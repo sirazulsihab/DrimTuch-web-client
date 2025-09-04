@@ -2,8 +2,54 @@
 
 import Head from "next/head";
 import "./page.css";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ServiceCard from "../../components/ServiceCard";
 
 export default function Home() {
+  const [categories, setCategories] = useState([]);
+  const [popularServices, setPopularServices] = useState([]);
+  const [year, setYear] = useState("");
+
+useEffect(() => {
+    async function fetchPopularServices() {
+      try {
+        const res = await fetch("http://localhost:5000/api/services");
+        const data = await res.json();
+
+        // Filter only popular services
+        const filtered = data.filter(
+          (service) => service.isPopular === true || service.isPopular === "true"
+        );
+
+        setPopularServices(filtered);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    }
+
+    fetchPopularServices();
+  }, []);
+  
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const res = await fetch("http://localhost:5000/api/categories");
+        const data = await res.json();
+        setCategories(data);
+
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    }
+    fetchCategories();
+  }, []);
+
+  
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="bg-white text-black">
       {/* SEO Head */}
@@ -13,7 +59,10 @@ export default function Home() {
           name="description"
           content="DrimTuch - ওয়েব ডেভেলপমেন্ট, ডিজিটাল মার্কেটিং ও গ্রাফিক ডিজাইনের সেরা সমাধান।"
         />
-        <meta name="keywords" content="DrimTuch, Web Development, Digital Marketing, SEO, Facebook Marketing, YouTube Marketing, Bangladesh" />
+        <meta
+          name="keywords"
+          content="DrimTuch, Web Development, Digital Marketing, SEO, Facebook Marketing, YouTube Marketing, Bangladesh"
+        />
         <meta name="author" content="DrimTuch Team" />
       </Head>
 
@@ -42,30 +91,34 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Services */}
-      <section className="px-8 py-12">
-        <h2 className="text-3xl font-bold mb-6 text-center text-black">
-          Our Services
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {["Web Development", "Digital Marketing", "Graphic Design"].map(
-            (service) => (
-              <div
-                key={service}
-                className="bg-yellow-400 text-black p-6 rounded-2xl shadow-lg custom-3d cursor-pointer hover:bg-black hover:text-yellow-400 transition"
-              >
-                <h3 className="text-xl font-semibold mb-2">{service}</h3>
-                <p>
-                  আপনার ব্যবসাকে এগিয়ে নিতে {service} এর মাধ্যমে আমরা সেরা সমাধান
-                  দিয়ে থাকি।
-                </p>
-              </div>
-            )
+      {/* Categories from Backend */}
+      <section id="categories" className="py-16 bg-gray-100">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            আমাদের সার্ভিস ক্যাটাগরি
+          </h2>
+          {categories.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {categories.map((cat) => (
+                <Link key={cat._id} href={`/services/${cat.slug || cat._id}`}>
+                  <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                    <img
+                      src={cat.img}
+                      alt={cat.title}
+                      className="w-full h-48 object-cover rounded-t-2xl"
+                    />
+                    <div className="p-6 text-center">
+                      <h3 className="text-xl font-semibold">{cat.title}</h3>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-600">লোড হচ্ছে...</p>
           )}
         </div>
       </section>
-
 
       {/* About Us */}
       <section className="px-8 py-12 bg-gray-100 text-center">
@@ -79,33 +132,30 @@ export default function Home() {
 
       {/* Popular Services */}
       <section className="px-8 py-12">
-        <h2 className="text-3xl font-bold mb-6 text-center text-black">
-          Popular Services
-        </h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-black">
+        Popular Services
+      </h2>
+
+      {popularServices.length > 0 ? (
         <div className="flex flex-col md:flex-row justify-center gap-6">
-          {["Facebook Marketing", "YouTube Marketing", "SEO Optimization"].map(
-            (service) => (
-              <div
-                key={service}
-                className="bg-black text-yellow-400 p-6 rounded-2xl shadow-lg custom-3d cursor-pointer hover:bg-yellow-400 hover:text-black transition"
-              >
-                <h3 className="text-xl font-semibold mb-2">{service}</h3>
-                <p>
-                  {service} এর মাধ্যমে আপনার ব্র্যান্ডকে কোটি মানুষের কাছে পৌঁছে
-                  দিন। প্রমাণিত স্ট্রাটেজি ব্যবহার করি।
-                </p>
-              </div>
-            )
-          )}
+          {popularServices.map((service) => (
+            <ServiceCard key={service._id} service={service} />
+          ))}
         </div>
-      </section>
+      ) : (
+        <p className="text-center text-gray-600">লোড হচ্ছে...</p>
+      )}
+    </section>
 
       {/* Footer */}
-      <footer className="bg-black text-yellow-400 text-center py-6">
-        <p>
-          © {new Date().getFullYear()} DrimTuch. All Rights Reserved.
-        </p>
-      </footer>
+      {/* <footer className="bg-black text-yellow-400 text-center py-6">
+        <p>© {new Date().getFullYear()} DrimTuch. All Rights Reserved.</p>
+      </footer> */}
+
+    <footer className="bg-black text-yellow-400 text-center py-6">
+      <p>© {year} DrimTuch. All Rights Reserved.</p>
+    </footer>
+
     </div>
   );
 }
