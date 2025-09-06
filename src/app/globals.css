@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* Custom 3D Hover Effect */
+.custom-3d {
+  box-shadow: 0 4px #000;
+  transition: all 0.2s ease;
+}
+
+.custom-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px #000;
+}
