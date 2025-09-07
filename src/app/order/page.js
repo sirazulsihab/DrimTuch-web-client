@@ -28,7 +28,7 @@ export default function OrderPage() {
   useEffect(() => {
     const fetchAdminNumbers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/payment-numbers");
+        const res = await fetch("http://localhost:5000/api/adminPayment/payment-numbers");
         const data = await res.json();
         setAdminNumbers(data);
       } catch (err) {
@@ -60,25 +60,40 @@ export default function OrderPage() {
     }
   };
 
+  
   // Place Order
   const placeOrder = async () => {
     if (!customerName || !customerEmail || !customerPhone || !paymentMethod || !transactionId) {
       return alert("Please fill all required fields");
     }
 
+    let affiliateCode = null;
+    if (typeof window !== "undefined") {
+    const affiliateData = localStorage.getItem("affiliate");
+    if (affiliateData) {
+        const { code, timestamp } = JSON.parse(affiliateData);
+        const now = new Date().getTime();
+        if (now - timestamp < 60 * 60 * 1000) { // ১ ঘন্টা
+        affiliateCode = code;
+        } else {
+        localStorage.removeItem("affiliate");
+        }
+    }
+    }
+
+
     try {
-      const res = await fetch("http://localhost:5000/api/orders", {
+      const res = await fetch("http://localhost:5000/api/orders/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           serviceId,
-          title,
-          price: finalPrice,
+          amount: finalPrice,
           customerName,
           customerEmail,
           customerPhone,
-          coupon,
-          discount,
+          couponCode: coupon || null,
+          affiliateCode,   // localStorage থেকে এসেছে
           paymentMethod,
           transactionId,
         }),
@@ -92,6 +107,7 @@ export default function OrderPage() {
       }
     } catch (err) {
       console.error("Order error", err);
+      alert("Something went wrong while placing the order.");
     }
   };
 
@@ -134,7 +150,7 @@ export default function OrderPage() {
           />
           <button
             onClick={applyCoupon}
-            className="px-4 bg-yellow-500 text-black rounded-r hover:bg-black hover:text-yellow-400 transition"
+            className="px-4 bg-yellow-500 text-black rounded-r hover:bg-black hover:text-yellow-400 transition cursor-pointer"
           >
             Apply
           </button>
@@ -171,7 +187,7 @@ export default function OrderPage() {
 
         <button
           onClick={placeOrder}
-          className="w-full px-4 py-2 bg-yellow-500 text-black font-semibold rounded hover:bg-black hover:text-yellow-400 transition"
+          className="w-full px-4 py-2 bg-yellow-500 text-black font-semibold rounded hover:bg-black hover:text-yellow-400 transition cursor-pointer"
         >
           Place Order
         </button>

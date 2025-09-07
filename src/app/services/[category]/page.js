@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import { use } from "react";
-import ServiceCard from "../../../../components/ServiceCard";
+import ServiceCard from "../../../components/ServiceCard";
 
 export default function ServicesByCategory({ params: paramsPromise }) {
   // unwrap the params promise

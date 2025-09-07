@@ -2,15 +2,18 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import "./globals.css"
+import { useRouter } from "next/navigation";  //  Router for redirect
+import "./globals.css";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import ServiceCard from "../../components/ServiceCard";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import ServiceCard from "../components/ServiceCard";
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
   const [popularServices, setPopularServices] = useState([]);
+  const [isAffiliateLoggedIn, setIsAffiliateLoggedIn] = useState(false); //  login state
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchCategories() {
@@ -40,6 +43,20 @@ export default function Home() {
     }
     fetchPopularServices();
   }, []);
+
+  // Check if affiliate logged in (localStorage এ token)
+  useEffect(() => {
+    const token = localStorage.getItem("affiliateToken");
+    setIsAffiliateLoggedIn(!!token);
+  }, []);
+
+  const handleAffiliateClick = () => {
+    if (isAffiliateLoggedIn) {
+      router.push("/affiliate/dashboard");
+    } else {
+      router.push("/affiliate/login");
+    }
+  };
 
   return (
     <div>
@@ -104,11 +121,12 @@ export default function Home() {
           আমাদের সার্ভিস প্রোমোট করে ইনকাম করুন। প্রতিটি সফল রেফারেলে আকর্ষণীয়
           কমিশন পাবেন। এখনই জয়েন করুন!
         </p>
-        <Link href="/affiliate/signup">
-          <button className="custom-3d px-6 py-3 bg-yellow-500 text-black font-bold rounded-2xl hover:bg-white hover:text-black transition cursor-pointer">
-            Affiliate Signup
-          </button>
-        </Link>
+        <button
+          onClick={handleAffiliateClick}
+          className="custom-3d px-6 py-3 bg-yellow-500 text-black font-bold rounded-2xl hover:bg-white hover:text-black transition cursor-pointer"
+        >
+          Affiliate Signup
+        </button>
       </section>
 
       {/* Popular Services */}

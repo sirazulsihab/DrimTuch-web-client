@@ -7,7 +7,7 @@ export default function AffiliateLogin() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // যদি form submit এ কল করা হয়
+    e.preventDefault();
     try {
       const res = await fetch("http://localhost:5000/api/affiliate/login", {
         method: "POST",
@@ -22,13 +22,8 @@ export default function AffiliateLogin() {
   
       const data = await res.json();
   
-      // Login success
-      alert("✅ Login Successful! Welcome back.");
-      
-      // Token localStorage এ রাখতে পারেন
-    //   localStorage.setItem("affiliateToken", data.token);
-
       localStorage.setItem("token", data.token); // ✅ save token
+      localStorage.setItem("user", JSON.stringify({ _id: data.userId }));
 
   
       // Redirect to dashboard
@@ -66,7 +61,7 @@ export default function AffiliateLogin() {
 
         <button
           onClick={handleLogin}
-          className="w-full py-3 mt-2 bg-yellow-500 text-black font-bold rounded-lg hover:bg-black hover:text-yellow-400 transition"
+          className="w-full py-3 mt-2 bg-yellow-500 text-black font-bold rounded-lg hover:bg-black hover:text-yellow-400 transition cursor-pointer"
         >
           Login
         </button>
