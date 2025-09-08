@@ -7,7 +7,7 @@ export default function OrderPage() {
   const searchParams = useSearchParams();
   const serviceId = searchParams.get("serviceId");
   const title = searchParams.get("title");
-  const price = Number(searchParams.get("price"));
+  const price = Number(searchParams.get("price")) || 0;
 
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
@@ -22,52 +22,68 @@ export default function OrderPage() {
     rocket: "",
   });
 
-  const finalPrice = price - discount;
+  // Compute final price dynamically
+  const finalPrice = Math.max(price - discount, 0);
 
   // Fetch Admin Payment Numbers
   useEffect(() => {
     const fetchAdminNumbers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/adminPayment/payment-numbers");
+        const res = await fetch("http://localhost:5000/api/admin/payment-numbers"); // Public route
+        if (!res.ok) {
+          throw new Error(`Failed to fetch: ${res.status}`);
+        }
         const data = await res.json();
-        setAdminNumbers(data);
+        setAdminNumbers(data); // bkash, nagad, rocket নাম্বারগুলো সেট হবে
       } catch (err) {
         console.error("Failed to fetch admin numbers", err);
       }
     };
+  
     fetchAdminNumbers();
   }, []);
+  
 
   // Apply Coupon
   const applyCoupon = async () => {
     if (!coupon.trim()) return alert("Please enter a coupon code");
+  
     try {
       const res = await fetch("http://localhost:5000/api/coupons/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: coupon.trim(), serviceId }),
+        body: JSON.stringify({ code: coupon.trim(), amount: price }),  // 🔹 এখানে amount পাঠাও
       });
+  
       const data = await res.json();
-
-      if (data.valid) {
-        setDiscount(data.discountAmount);
-        alert("Coupon Applied!");
+  
+      if (data.valid && typeof data.discount === "number") {
+        setDiscount(data.discount);
+        alert(`Coupon applied! You saved ৳${data.discount}`);
       } else {
         setDiscount(0);
-        alert("Invalid Coupon");
+        alert(data.message || "Invalid Coupon");
       }
     } catch (err) {
       console.error("Coupon error", err);
       alert("Failed to apply coupon");
     }
   };
+  
 
-  // Place Order Function (Fixed)
+  // Simple phone validation
+  const isPhoneValid = (phone) => {
+    // Bangladeshi phone number pattern: 01XXXXXXXXX
+    const pattern = /^(?:\+?88)?01[3-9]\d{8}$/;
+    return pattern.test(phone);
+  };
+
+  // Place Order Function
   const placeOrder = async () => {
-    // Frontend validation
-    if (!customerName.trim() || !customerPhone.trim() || !paymentMethod || !transactionId.trim()) {
-      return alert("Please fill all required fields: Name, Phone, Payment Method, Transaction ID");
-    }
+    if (!customerName.trim()) return alert("Please enter your name");
+    if (!customerPhone.trim() || !isPhoneValid(customerPhone)) return alert("Please enter a valid Bangladeshi phone number");
+    if (!paymentMethod) return alert("Please select a payment method");
+    if (!transactionId.trim()) return alert("Please enter transaction ID");
 
     let affiliateCode = null;
 
@@ -97,8 +113,6 @@ export default function OrderPage() {
         paymentMethod,
         transactionId: transactionId.trim(),
       };
-
-      console.log("BODY TO POST:", body); // Debugging
 
       const res = await fetch("http://localhost:5000/api/orders/create", {
         method: "POST",

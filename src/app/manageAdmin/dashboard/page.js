@@ -5,36 +5,71 @@ import Affiliates from "./Affiliates";
 import Services from "./Services";
 import Coupons from "./Coupons";
 import Payouts from "./Payouts";
+import AdminPaymentNumbers from "./AdminPaymentNumbers";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 
 export default function AdminDashboard() {
   const [tab, setTab] = useState("orders");
 
+  const handleLogout = () => {
+    // লগআউট লজিক: টোকেন রিমুভ এবং লগইন পেজে রিডাইরেক্ট
+    localStorage.removeItem("adminToken");
+    window.location.href = "/admin/login";
+  };
+
+  // Sidebar বাটনের ক্লাস
+  const sidebarBtnClass =
+    "mb-2 text-left px-3 py-2 rounded transition-colors duration-200 font-semibold hover:bg-yellow-500 hover:text-black";
+
   return (
     <div>
-      <Navbar/>
-    
-    <div className="min-h-screen flex bg-gray-100">
-      {/* Sidebar */}
-      <div className="w-64 bg-white shadow p-4 flex flex-col">
-        <h2 className="text-xl font-bold mb-6">Admin Dashboard</h2>
-        <button onClick={() => setTab("orders")} className="mb-2 text-left">Orders</button>
-        <button onClick={() => setTab("affiliates")} className="mb-2 text-left">Affiliates</button>
-        <button onClick={() => setTab("services")} className="mb-2 text-left">Services</button>
-        <button onClick={() => setTab("coupons")} className="mb-2 text-left">Coupons</button>
-        <button onClick={() => setTab("payouts")} className="mb-2 text-left">Payout Requests</button>
-      </div>
+      <Navbar />
 
-      {/* Content */}
-      <div className="flex-1 p-6 overflow-auto">
-        {tab === "orders" && <Orders />}
-        {tab === "affiliates" && <Affiliates />}
-        {tab === "services" && <Services />}
-        {tab === "coupons" && <Coupons />}
-        {tab === "payouts" && <Payouts />}
+      <div className="min-h-screen flex bg-gray-100">
+        {/* Sidebar */}
+        <div className="w-64 bg-white shadow p-4 flex flex-col">
+          <h2 className="text-xl font-bold mb-6 text-yellow-500">Admin Dashboard</h2>
+
+          <button onClick={() => setTab("orders")} className={sidebarBtnClass}>
+            Orders
+          </button>
+          <button onClick={() => setTab("affiliates")} className={sidebarBtnClass}>
+            Affiliates
+          </button>
+          <button onClick={() => setTab("services")} className={sidebarBtnClass}>
+            Services
+          </button>
+          <button onClick={() => setTab("paymentMethod")} className={sidebarBtnClass}>
+            Payment Method
+          </button>
+          <button onClick={() => setTab("coupons")} className={sidebarBtnClass}>
+            Coupons
+          </button>
+          <button onClick={() => setTab("payouts")} className={sidebarBtnClass}>
+            Payout Requests
+          </button>
+
+          <div className="mt-auto">
+            <button
+              onClick={handleLogout}
+              className="w-full px-3 py-2 mt-4 bg-red-500 text-white font-semibold rounded hover:bg-red-600 transition-colors duration-200"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 p-6 overflow-auto">
+          {tab === "orders" && <Orders />}
+          {tab === "affiliates" && <Affiliates />}
+          {tab === "services" && <Services />}
+          {tab === "paymentMethod" && <AdminPaymentNumbers />}
+          {tab === "coupons" && <Coupons />}
+          {tab === "payouts" && <Payouts />}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
