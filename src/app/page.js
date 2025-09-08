@@ -44,7 +44,7 @@ export default function Home() {
     fetchPopularServices();
   }, []);
 
-  // Check if affiliate logged in (localStorage এ token)
+  //  if affiliate logged in (localStorage এ token)
   useEffect(() => {
     const token = localStorage.getItem("affiliateToken");
     setIsAffiliateLoggedIn(!!token);
@@ -115,17 +115,16 @@ export default function Home() {
       {/* ✅ Affiliate Signup Section */}
       <section className="px-8 py-16 bg-black text-yellow-400 text-center">
         <h2 className="text-3xl font-bold mb-6">
-          আমাদের এফিলিয়েট প্রোগ্রামে যোগ দিন
+        সবার জন্য ঘরে বসে দারুন আয়ের সুযোগ
         </h2>
         <p className="text-lg max-w-2xl mx-auto mb-6 text-white">
-          আমাদের সার্ভিস প্রোমোট করে ইনকাম করুন। প্রতিটি সফল রেফারেলে আকর্ষণীয়
-          কমিশন পাবেন। এখনই জয়েন করুন!
+        অনলাইন থেকে আয় শুরু করুন মোবাইল দিয়েই। এবং কোন বিষয়ে দক্ষতা ছারাই আয়ের সুযোগ পাচ্ছেন। আমার নিয়ে আসলাম আপনাদের জন্য দারুন সুযোগ। আমাদের সার্ভিস গুলা শেয়ার করে আপনিও ইনকাম করতে পারবেন ঘরে বসে। আমরা দিচ্ছি চাহিদা সম্পুর্ন বিভিন্ন সার্ভিস যা শেয়ার করার মাধ্যমে। এবং সেই সার্ভিস ক্লাইন্ট নিলেই পাচ্ছেন দারুন আয়ের সুযোগ। আপনি একটিভ ভাবে কাজ করলে ইনশাআল্লাহ্‌ মাসে ১০,০০০ থেকে ২০,০০০ টাকা বা এর বেশি ও ইনকাম সম্ভব । আপনি লিখা পড়া করছেন বা বেকার অথবা চাকরি করছেন বা ব্যাবসা । এর পাশাপাশি খুব সহজেই আয় করতে পারবেন এর মাধ্যমে ইনশাআল্লাহ্‌। আর মাত্র ১০০০ টাকা হলেই তুলতে পারবে বিকাশ , নগদ , রকেটের মাধ্যমে।
         </p>
         <button
           onClick={handleAffiliateClick}
           className="custom-3d px-6 py-3 bg-yellow-500 text-black font-bold rounded-2xl hover:bg-white hover:text-black transition cursor-pointer"
         >
-          Affiliate Signup
+          ঘরে বসে আয়
         </button>
       </section>
 

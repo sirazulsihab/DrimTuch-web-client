@@ -52,7 +52,7 @@ export default function OrderPage() {
       const res = await fetch("http://localhost:5000/api/coupons/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: coupon.trim(), amount: price }),  // 🔹 এখানে amount পাঠাও
+        body: JSON.stringify({ code: coupon.trim(), amount: price }),  //  amount
       });
   
       const data = await res.json();

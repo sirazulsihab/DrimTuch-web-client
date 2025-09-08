@@ -36,3 +36,47 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 6px #000;
 }
+
+
+/* progress bar */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #facc15; /* হলুদ রঙ (তুমি চাইলে পরিবর্তন করতে পারো) */
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+}
+
+/* লোডিং স্পিনার চাইলে (ইচ্ছা হলে রাখতে পারো) */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #facc15;
+  border-left-color: #facc15;
+  border-radius: 50%;
+
+  animation: nprogress-spinner 400ms linear infinite;
+}
+
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
