@@ -14,7 +14,7 @@ export default function AffiliateDashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please login first!");
+      // alert("Please login first!");
       window.location.href = "/affiliate/login";
       return;
     }
@@ -84,7 +84,6 @@ export default function AffiliateDashboard() {
   if (!affiliate) return <p className="text-center text-red-500">Affiliate data not found</p>;
 
   const referralLink = `${window.location.origin}/?ref=${affiliate.referralCode}`;
-  const availableBalance = affiliate.totalEarnings - affiliate.pendingEarnings;
 
   return (
     <div>
@@ -94,7 +93,7 @@ export default function AffiliateDashboard() {
           <h2 className="text-3xl font-bold text-yellow-400">Affiliate Dashboard</h2>
           <button
             onClick={logout}
-            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition"
+            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition cursor-pointer"
           >
             Logout
           </button>
@@ -113,7 +112,7 @@ export default function AffiliateDashboard() {
 
           <div className="bg-black text-yellow-400 rounded-2xl shadow-lg p-6">
             <h3 className="text-xl font-semibold mb-2">Available Balance</h3>
-            <p className="text-3xl font-bold">৳ {availableBalance}</p>
+            <p className="text-3xl font-bold">৳ {affiliate.availableBalance}</p>
           </div>
 
           {/* ✅ Successful Referrals */}
@@ -149,7 +148,7 @@ export default function AffiliateDashboard() {
               navigator.clipboard.writeText(referralLink);
               alert("Referral link copied!");
             }}
-            className="px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-black hover:text-yellow-400 transition"
+            className="px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-black hover:text-yellow-400 transition cursor-pointer"
           >
             Copy Link
           </button>
@@ -199,15 +198,15 @@ export default function AffiliateDashboard() {
           />
           <button
             onClick={requestWithdraw}
-            disabled={availableBalance < 1000}
-            className={`px-4 py-2 rounded-lg ${availableBalance >= 1000
+            disabled={affiliate.availableBalance < 1000}
+            className={`px-4 py-2 rounded-lg ${affiliate.availableBalance >= 1000
               ? "bg-yellow-500 text-black hover:bg-black hover:text-yellow-400 transition"
               : "bg-gray-400 text-gray-700 cursor-not-allowed"
               }`}
           >
             Withdraw
           </button>
-          {availableBalance < 1000 && <p className="text-red-500 mt-2">Balance must be at least 1000 for withdraw</p>}
+          {affiliate.availableBalance < 1000 && <p className="text-red-500 mt-2">Balance must be at least 1000 for withdraw</p>}
         </div>
 
         {/* Withdraw History */}

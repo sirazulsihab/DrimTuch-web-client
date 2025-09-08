@@ -11,6 +11,7 @@ export default function Navbar() {
     { name: "Services", path: "#" },
     { name: "About Us", path: "#" },
     { name: "Contact", path: "#" },
+    { name: "Track Order", path: "/order/track" },
   ];
 
   return (

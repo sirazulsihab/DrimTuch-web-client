@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Navbar from "./Navbar";
 
 export default function ServiceCard({ service }) {
   const { _id, title, description, img, price } = service;
@@ -27,10 +28,10 @@ export default function ServiceCard({ service }) {
             Order Now
           </button> */}
           <Link href={`/order?serviceId=${_id}&title=${encodeURIComponent(title)}&price=${price}`}>
-          <button className="px-4 py-2 rounded-lg bg-yellow-500 text-black font-semibold hover:bg-black hover:text-yellow-400 transition cursor-pointer">
-            Order Now
-          </button>
-        </Link>
+            <button className="px-4 py-2 rounded-lg bg-yellow-500 text-black font-semibold hover:bg-black hover:text-yellow-400 transition cursor-pointer">
+              Order Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

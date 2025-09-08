@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { use } from "react";
 import ServiceCard from "../../../components/ServiceCard";
+import Navbar from "@/components/Navbar";
 
 export default function ServicesByCategory({ params: paramsPromise }) {
   // unwrap the params promise
@@ -36,20 +37,23 @@ export default function ServicesByCategory({ params: paramsPromise }) {
   }
 
   return (
-    <div className="container mx-auto px-6 py-16">
-      <h2 className="text-3xl font-bold mb-8 capitalize">
-        {category.replace("-", " ")} সার্ভিসেস
-      </h2>
+    <div>
+      <Navbar />
+      <div className="container mx-auto px-6 py-16">
+        <h2 className="text-3xl font-bold mb-8 capitalize">
+          {category.replace("-", " ")} সার্ভিসেস
+        </h2>
 
-      {services.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <ServiceCard key={service._id} service={service} />
-          ))}
-        </div>
-      ) : (
-        <p className="text-gray-600">এই ক্যাটাগরিতে কোনো সার্ভিস পাওয়া যায়নি।</p>
-      )}
+        {services.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <ServiceCard key={service._id} service={service} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-600">এই ক্যাটাগরিতে কোনো সার্ভিস পাওয়া যায়নি।</p>
+        )}
+      </div>
     </div>
   );
 }

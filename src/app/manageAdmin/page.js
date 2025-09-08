@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Navbar from "@/components/Navbar";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -27,31 +28,35 @@ export default function AdminLogin() {
     }
   };
 
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6">Admin Login</h2>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 w-full rounded mb-4"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 w-full rounded mb-4"
-        />
-        <button
-          onClick={handleLogin}
-          className="bg-yellow-500 w-full py-2 rounded hover:bg-black hover:text-yellow-400 transition"
-        >
-          Login
-        </button>
+    <div>
+      <Navbar />
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded shadow-md w-96">
+          <h2 className="text-2xl font-bold mb-6">Admin Login</h2>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border p-2 w-full rounded mb-4"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="border p-2 w-full rounded mb-4"
+          />
+          <button
+            onClick={handleLogin}
+            className="bg-yellow-500 w-full py-2 rounded hover:bg-black hover:text-yellow-400 transition"
+          >
+            Login
+          </button>
+        </div>
       </div>
     </div>
   );
