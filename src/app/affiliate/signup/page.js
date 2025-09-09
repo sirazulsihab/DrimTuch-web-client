@@ -33,7 +33,7 @@ export default function AffiliateSignup() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/affiliate/register", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/affiliate/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

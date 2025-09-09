@@ -10,7 +10,7 @@ export default function AffiliateLogin() {
   const handleLogin = async (e) => {
     e.preventDefault(); // যদি form submit এ কল করা হয়
     try {
-      const res = await fetch("http://localhost:5000/api/affiliate/login", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/affiliate/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }), // email/password অবশ্যই state বা variable থেকে আসবে
@@ -73,7 +73,7 @@ export default function AffiliateLogin() {
           </button>
 
           <p className="text-sm text-gray-300 mt-4 text-center">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <a
               href="/affiliate/signup"
               className="text-yellow-400 hover:text-yellow-200 font-semibold"
@@ -81,6 +81,7 @@ export default function AffiliateLogin() {
               Sign Up
             </a>
           </p>
+
         </div>
       </div>
     </div>

@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    // Optional: যদি public URL বা base path দরকার হয়
+    // basePath: '/your-subfolder',
+    reactStrictMode: true,
+output: 'export', // Netlify এর জন্য SPA export
 
-export default nextConfig;
+  images: {
+    domains: ["drimtuch-server.onrender.com"], // আপনার image domain
+    unoptimized: true, // ✅ Static export-compatible
+  },
+  };
+  
+  export default nextConfig;
+  

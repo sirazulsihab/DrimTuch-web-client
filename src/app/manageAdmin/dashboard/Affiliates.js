@@ -7,7 +7,7 @@ export default function Affiliates() {
 
   const fetchAffiliates = async () => {
     const token = localStorage.getItem("adminToken");
-    const res = await fetch("http://localhost:5000/api/admin/affiliates", {
+    const res = await fetch("https://drimtuch-server.onrender.com/api/admin/affiliates", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();

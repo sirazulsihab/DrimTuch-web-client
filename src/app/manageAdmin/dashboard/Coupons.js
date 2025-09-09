@@ -21,7 +21,7 @@ export default function Coupons() {
   const fetchCoupons = async () => {
     try {
       const token = localStorage.getItem("adminToken"); // JWT or cookie auth
-      const res = await fetch("http://localhost:5000/api/admin/coupons", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/admin/coupons", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -52,7 +52,7 @@ export default function Coupons() {
   const addCoupon = async () => {
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch("http://localhost:5000/api/admin/coupons/add", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/admin/coupons/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export default function Coupons() {
     if (!confirm("Are you sure to delete this coupon?")) return;
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch("http://localhost:5000/api/admin/coupons/delete", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/admin/coupons/delete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

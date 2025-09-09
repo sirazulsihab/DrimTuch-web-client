@@ -7,7 +7,7 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     const token = localStorage.getItem("adminToken");
-    const res = await fetch("http://localhost:5000/api/admin/orders", {
+    const res = await fetch("https://drimtuch-server.onrender.com/api/admin/orders", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -16,7 +16,7 @@ export default function Orders() {
 
   const updateStatus = async (orderId, status) => {
     const token = localStorage.getItem("adminToken");
-    await fetch("http://localhost:5000/api/admin/orders/status", {
+    await fetch("https://drimtuch-server.onrender.com/api/admin/orders/status", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

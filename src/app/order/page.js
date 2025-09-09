@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function OrderPage() {
+function OrderForm() {
   const searchParams = useSearchParams();
   const serviceId = searchParams.get("serviceId");
   const title = searchParams.get("title");
@@ -29,34 +29,33 @@ export default function OrderPage() {
   useEffect(() => {
     const fetchAdminNumbers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/payment-numbers"); // Public route
+        const res = await fetch("https://drimtuch-server.onrender.com/api/admin/payment-numbers");
         if (!res.ok) {
           throw new Error(`Failed to fetch: ${res.status}`);
         }
         const data = await res.json();
-        setAdminNumbers(data); // bkash, nagad, rocket নাম্বারগুলো সেট হবে
+        setAdminNumbers(data);
       } catch (err) {
         console.error("Failed to fetch admin numbers", err);
       }
     };
-  
+
     fetchAdminNumbers();
   }, []);
-  
 
   // Apply Coupon
   const applyCoupon = async () => {
     if (!coupon.trim()) return alert("Please enter a coupon code");
-  
+
     try {
-      const res = await fetch("http://localhost:5000/api/coupons/validate", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/coupons/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: coupon.trim(), amount: price }),  //  amount
+        body: JSON.stringify({ code: coupon.trim(), amount: price }),
       });
-  
+
       const data = await res.json();
-  
+
       if (data.valid && typeof data.discount === "number") {
         setDiscount(data.discount);
         alert(`Coupon applied! You saved ৳${data.discount}`);
@@ -69,11 +68,9 @@ export default function OrderPage() {
       alert("Failed to apply coupon");
     }
   };
-  
 
   // Simple phone validation
   const isPhoneValid = (phone) => {
-    // Bangladeshi phone number pattern: 01XXXXXXXXX
     const pattern = /^(?:\+?88)?01[3-9]\d{8}$/;
     return pattern.test(phone);
   };
@@ -81,7 +78,8 @@ export default function OrderPage() {
   // Place Order Function
   const placeOrder = async () => {
     if (!customerName.trim()) return alert("Please enter your name");
-    if (!customerPhone.trim() || !isPhoneValid(customerPhone)) return alert("Please enter a valid Bangladeshi phone number");
+    if (!customerPhone.trim() || !isPhoneValid(customerPhone))
+      return alert("Please enter a valid Bangladeshi phone number");
     if (!paymentMethod) return alert("Please select a payment method");
     if (!transactionId.trim()) return alert("Please enter transaction ID");
 
@@ -114,7 +112,7 @@ export default function OrderPage() {
         transactionId: transactionId.trim(),
       };
 
-      const res = await fetch("http://localhost:5000/api/orders/create", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/orders/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -124,7 +122,6 @@ export default function OrderPage() {
 
       if (res.ok) {
         alert(`Order placed successfully! Your order number is ${data.orderNumber}`);
-        // Reset form
         setCustomerName("");
         setCustomerEmail("");
         setCustomerPhone("");
@@ -216,7 +213,7 @@ export default function OrderPage() {
 
           <button
             onClick={placeOrder}
-            className="w-full py-3 bg-yellow-500 text-black font-semibold rounded hover:bg-black hover:text-yellow-400 transition"
+            className="w-full py-3 bg-yellow-500 text-black font-semibold rounded hover:bg-black hover:text-yellow-400 transition cursor-pointer"
           >
             Place Order
           </button>
@@ -243,5 +240,13 @@ export default function OrderPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function OrderPage() {
+  return (
+    <Suspense fallback={<p className="text-center p-10">Loading order form...</p>}>
+      <OrderForm />
+    </Suspense>
   );
 }

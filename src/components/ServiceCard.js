@@ -1,17 +1,32 @@
 "use client";
 import Link from "next/link";
 import Navbar from "./Navbar";
+import Image from "next/image";
 
 export default function ServiceCard({ service }) {
   const { _id, title, description, img, price } = service;
 
   return (
     <div className="bg-black text-yellow-400 rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:bg-yellow-400 hover:text-black">
-      <img
+      {/* <div className="relative w-full h-48">
+<Image
         src={img}
         alt={title}
+        fill
         className="w-full h-48 object-cover"
       />
+      </div>
+       */}
+
+      <div className="relative w-full h-48">
+        <Image
+          src={img}
+          alt={title}
+          fill
+          className="object-cover rounded-t-2xl"
+        />
+      </div>
+
 
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{title}</h3>

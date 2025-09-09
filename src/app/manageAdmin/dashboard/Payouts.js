@@ -9,7 +9,7 @@ export default function Payouts() {
   const fetchPayouts = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/admin/payouts", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/admin/payouts", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         },
@@ -27,7 +27,7 @@ export default function Payouts() {
     if (!confirm("Approve this payout?")) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/payouts/approve/${id}`,
+        `https://drimtuch-server.onrender.com/api/admin/payouts/approve/${id}`,
         {
           method: "POST",
           headers: {
@@ -47,7 +47,7 @@ export default function Payouts() {
     if (!confirm("Reject this payout?")) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/payouts/reject/${id}`,
+        `https://drimtuch-server.onrender.com/api/admin/payouts/reject/${id}`,
         {
           method: "POST",
           headers: {

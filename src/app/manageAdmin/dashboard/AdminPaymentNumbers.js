@@ -13,7 +13,7 @@ export default function AdminPaymentNumbers() {
   useEffect(() => {
     async function fetchNumbers() {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/payment-numbers");
+        const res = await fetch("https://drimtuch-server.onrender.com/api/admin/payment-numbers");
         if (!res.ok) throw new Error("Failed to fetch numbers");
         const data = await res.json();
         setBkash(data.bkash || "");
@@ -38,7 +38,7 @@ export default function AdminPaymentNumbers() {
       // localStorage থেকে adminToken নিয়ে authorization header পাঠানো
       const token = localStorage.getItem("adminToken");
   
-      const res = await fetch("http://localhost:5000/api/admin/payment-numbers", {
+      const res = await fetch("https://drimtuch-server.onrender.com/api/admin/payment-numbers", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

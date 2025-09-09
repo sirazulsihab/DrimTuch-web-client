@@ -14,7 +14,7 @@ export default function TrackOrder() {
 
         try {
             const res = await fetch(
-                `http://localhost:5000/api/orders/track/${orderNumber}`
+                `https://drimtuch-server.onrender.com/api/orders/track/${orderNumber}`
             );
 
             if (!res.ok) {

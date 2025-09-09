@@ -21,7 +21,7 @@ export default function AffiliateDashboard() {
 
     const fetchAffiliate = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/affiliate/summary/me", {
+        const res = await fetch("https://drimtuch-server.onrender.com/api/affiliate/summary/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch");
@@ -31,7 +31,7 @@ export default function AffiliateDashboard() {
         console.log("affiliate Data", data);
 
         // Fetch withdraw history
-        const histRes = await fetch("http://localhost:5000/api/affiliate/withdraw-history", {
+        const histRes = await fetch("https://drimtuch-server.onrender.com/api/affiliate/withdraw-history", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (histRes.ok) {
@@ -50,7 +50,7 @@ export default function AffiliateDashboard() {
 
   const updatePayment = async () => {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:5000/api/affiliate/payment-method", {
+    const res = await fetch("https://drimtuch-server.onrender.com/api/affiliate/payment-method", {
       method: "PUT",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify({ method, number }),
@@ -65,7 +65,7 @@ export default function AffiliateDashboard() {
     const token = localStorage.getItem("token");
     const availableBalance = affiliate.totalEarnings - affiliate.pendingEarnings;
     if (availableBalance < 1000) return alert("Balance must be at least 1000 for withdraw");
-    const res = await fetch("http://localhost:5000/api/affiliate/withdraw", {
+    const res = await fetch("https://drimtuch-server.onrender.com/api/affiliate/withdraw", {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify({ amount: Number(withdrawAmount) }),

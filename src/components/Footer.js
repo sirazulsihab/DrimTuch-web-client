@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-yellow-400 text-center py-6">
-      <p>© {year} DrimTuch. All Rights Reserved.</p>
+      <p>© {year} DrimTuch. All Rights Reserved. | Developed By MynoSoft Technology</p>
     </footer>
   );
 }

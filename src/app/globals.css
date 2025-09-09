@@ -44,7 +44,7 @@ body {
 }
 
 #nprogress .bar {
-  background: #facc15; /* হলুদ রঙ (তুমি চাইলে পরিবর্তন করতে পারো) */
+  background: #facc15 !important; /* হলুদ রঙ (তুমি চাইলে পরিবর্তন করতে পারো) */
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -69,8 +69,8 @@ body {
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: #facc15;
-  border-left-color: #facc15;
+  border-top-color: #facc15 !important;
+  border-left-color: #facc15 !important;
   border-radius: 50%;
 
   animation: nprogress-spinner 400ms linear infinite;

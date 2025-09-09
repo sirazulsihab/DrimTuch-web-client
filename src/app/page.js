@@ -8,6 +8,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
+import Image from "next/image";
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
@@ -18,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const res = await fetch("http://localhost:5000/api/categories");
+        const res = await fetch("https://drimtuch-server.onrender.com/api/categories");
         const data = await res.json();
         setCategories(data);
       } catch (err) {
@@ -31,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchPopularServices() {
       try {
-        const res = await fetch("http://localhost:5000/api/services");
+        const res = await fetch("https://drimtuch-server.onrender.com/api/services");
         const data = await res.json();
         const filtered = data.filter(
           (s) => s.isPopular === true || s.isPopular === "true"
@@ -84,11 +85,20 @@ export default function Home() {
               {categories.map((cat) => (
                 <Link key={cat._id} href={`/services/${cat.slug || cat._id}`}>
                   <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
-                    <img
+                    <div className="relative w-full h-48">
+                      <Image
+                        src={cat.img}
+                        alt={cat.title}
+                        fill
+                        className="object-cover rounded-t-2xl"
+                      />
+                    </div>
+
+                    {/* <Image
                       src={cat.img}
                       alt={cat.title}
                       className="w-full h-48 object-cover rounded-t-2xl"
-                    />
+                    /> */}
                     <div className="p-6 text-center">
                       <h3 className="text-xl font-semibold">{cat.title}</h3>
                     </div>
@@ -115,10 +125,10 @@ export default function Home() {
       {/* ✅ Affiliate Signup Section */}
       <section className="px-8 py-16 bg-black text-yellow-400 text-center">
         <h2 className="text-3xl font-bold mb-6">
-        সবার জন্য ঘরে বসে দারুন আয়ের সুযোগ
+          সবার জন্য ঘরে বসে দারুন আয়ের সুযোগ
         </h2>
         <p className="text-lg max-w-2xl mx-auto mb-6 text-white">
-        অনলাইন থেকে আয় শুরু করুন মোবাইল দিয়েই। এবং কোন বিষয়ে দক্ষতা ছারাই আয়ের সুযোগ পাচ্ছেন। আমার নিয়ে আসলাম আপনাদের জন্য দারুন সুযোগ। আমাদের সার্ভিস গুলা শেয়ার করে আপনিও ইনকাম করতে পারবেন ঘরে বসে। আমরা দিচ্ছি চাহিদা সম্পুর্ন বিভিন্ন সার্ভিস যা শেয়ার করার মাধ্যমে। এবং সেই সার্ভিস ক্লাইন্ট নিলেই পাচ্ছেন দারুন আয়ের সুযোগ। আপনি একটিভ ভাবে কাজ করলে ইনশাআল্লাহ্‌ মাসে ১০,০০০ থেকে ২০,০০০ টাকা বা এর বেশি ও ইনকাম সম্ভব । আপনি লিখা পড়া করছেন বা বেকার অথবা চাকরি করছেন বা ব্যাবসা । এর পাশাপাশি খুব সহজেই আয় করতে পারবেন এর মাধ্যমে ইনশাআল্লাহ্‌। আর মাত্র ১০০০ টাকা হলেই তুলতে পারবে বিকাশ , নগদ , রকেটের মাধ্যমে।
+          অনলাইন থেকে আয় শুরু করুন মোবাইল দিয়েই। এবং কোন বিষয়ে দক্ষতা ছারাই আয়ের সুযোগ পাচ্ছেন। আমার নিয়ে আসলাম আপনাদের জন্য দারুন সুযোগ। আমাদের সার্ভিস গুলা শেয়ার করে আপনিও ইনকাম করতে পারবেন ঘরে বসে। আমরা দিচ্ছি চাহিদা সম্পুর্ন বিভিন্ন সার্ভিস যা শেয়ার করার মাধ্যমে। এবং সেই সার্ভিস ক্লাইন্ট নিলেই পাচ্ছেন দারুন আয়ের সুযোগ। আপনি একটিভ ভাবে কাজ করলে ইনশাআল্লাহ্‌ মাসে ১০,০০০ থেকে ২০,০০০ টাকা বা এর বেশি ও ইনকাম সম্ভব । আপনি লিখা পড়া করছেন বা বেকার অথবা চাকরি করছেন বা ব্যাবসা । এর পাশাপাশি খুব সহজেই আয় করতে পারবেন এর মাধ্যমে ইনশাআল্লাহ্‌। আর মাত্র ১০০০ টাকা হলেই তুলতে পারবে বিকাশ , নগদ , রকেটের মাধ্যমে।
         </p>
         <button
           onClick={handleAffiliateClick}
