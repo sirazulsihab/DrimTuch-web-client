@@ -6,23 +6,31 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
+  // Navigation Items
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "#", dropdown: true },
-    { name: "About Us", path: "#" },
+    { name: "ঘরে বসে আয়", path: "/affiliate/dashboard" },
+    { name: "এরিয়া পার্টনার", path: "#" },
+    { name: "About Us", path: "/about" },   
+    { name: "Mission & Vision", path: "#" },
     { name: "Contact", path: "/contact" },
   ];
 
+  // Dropdown for Services
   const serviceDropdown = [
     { name: "ডিজিটাল মার্কেটিং", path: "/services/digital-marketing/" },
     { name: "ডিজিটাল সার্ভিসেস", path: "/services/digital-services/" },
-    { name: "ধরে বসে আয়", path: "/affiliate/dashboard" },
+    { name: "এ আই সার্ভিস", path: "/services/ai-services/" },
+    { name: "কনসালটেন্সি সার্ভিস", path: "/services/consultancy/" },
+    { name: "লোকাল বিজনেস", path: "/services/local-business/" },
     { name: "Track Order", path: "/order/track" },
   ];
 
   return (
     <nav className="bg-black text-yellow-400 sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:px-8">
+        {/* Logo */}
         <div className="text-2xl font-bold">
           <Link href="/">DrimTuch</Link>
         </div>
@@ -39,7 +47,6 @@ export default function Navbar() {
               >
                 <span>{item.name}</span>
                 {servicesOpen && (
-                  // <ul className="absolute top-full left-0 bg-white text-black shadow-lg rounded pt-1 w-56">
                   <ul className="absolute top-full left-0 bg-black text-white shadow-lg rounded pt-1 w-56">
                     {serviceDropdown.map((sub) => (
                       <li key={sub.name}>

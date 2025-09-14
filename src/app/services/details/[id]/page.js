@@ -133,7 +133,7 @@
 import ServiceDetailsClient from "@/components/ServiceDetailsClient";
 
 export async function generateStaticParams() {
-  const res = await fetch("https://drimtuch-server.onrender.com/api/services");
+  const res = await fetch("https://drimtuch-server.onrender.com/api/services", { cache: "no-store" });
   const services = await res.json();
 
   return services.map((service) => ({

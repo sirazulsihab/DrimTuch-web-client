@@ -209,6 +209,7 @@ export default function AffiliateDashboard() {
           {affiliate.availableBalance < 1000 && <p className="text-red-500 mt-2">Balance must be at least 1000 for withdraw</p>}
         </div>
 
+
         {/* Withdraw History */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mt-8">
           <h3 className="text-xl font-bold mb-2">Withdraw History</h3>
