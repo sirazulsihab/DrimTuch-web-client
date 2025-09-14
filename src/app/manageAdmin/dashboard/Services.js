@@ -269,8 +269,8 @@ export default function Services() {
   // ✅ সব সার্ভিস ফেচ করা
   const fetchServices = async () => {
     try {
-      // const res = await fetch("https://drimtuch-server.onrender.com/api/services");
-      const res = await fetch("http://localhost:5000/api/services");
+      const res = await fetch("https://drimtuch-server.onrender.com/api/services");
+      // const res = await fetch("http://localhost:5000/api/services");
       const data = await res.json();
       setServices(data);
     } catch (err) {
@@ -295,10 +295,8 @@ export default function Services() {
   const saveService = async () => {
     try {
       const url = editingService
-        ? "http://localhost:5000/api/admin/services/update"
-        // ? "https://drimtuch-server.onrender.com/api/admin/services/update"
-        // : "https://drimtuch-server.onrender.com/api/admin/services/add";
-        : "http://localhost:5000/api/admin/services/add";
+        ? "https://drimtuch-server.onrender.com/api/admin/services/update"
+        : "https://drimtuch-server.onrender.com/api/admin/services/add";
 
       const body = editingService
         ? { ...form, serviceId: editingService._id }
