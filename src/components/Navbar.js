@@ -1,51 +1,22 @@
-
-
-// "use client";
-// import Link from "next/link";
-// import "./Navbar.css";
-
-// export default function Navbar() {
-//   const navItems = [
-//     { name: "Home", path: "/" },
-//     // { name: "Services", path: "/services" },
-//     { name: "Services", path: "#" },
-//     { name: "About Us", path: "#" },
-//     { name: "Contact", path: "#" },
-//     { name: "Track Order", path: "/order/track" },
-//   ];
-
-//   return (
-//     <nav className="flex justify-between items-center px-8 py-4 shadow-md sticky top-0 bg-white z-50">
-//       <div className="text-2xl font-bold text-yellow-400">
-//         <Link href="/">DrimTuch</Link>
-//       </div>
-//       <ul className="flex gap-6 text-lg font-medium">
-//         {navItems.map((item) => (
-//           <li
-//             key={item.name}
-//             className="relative px-4 py-2 rounded-xl cursor-pointer custom-3d hover:text-yellow-400"
-//           >
-//             <Link href={item.path}>{item.name}</Link>
-//           </li>
-//         ))}
-//       </ul>
-//     </nav>
-//   );
-// }
-
-
 "use client";
 import { useState } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "#" },
+    { name: "Services", path: "#", dropdown: true },
     { name: "About Us", path: "#" },
     { name: "Contact", path: "/contact" },
+  ];
+
+  const serviceDropdown = [
+    { name: "ডিজিটাল মার্কেটিং", path: "/services/digital-marketing/" },
+    { name: "ডিজিটাল সার্ভিসেস", path: "/services/digital-services/" },
+    { name: "ধরে বসে আয়", path: "/affiliate/dashboard" },
     { name: "Track Order", path: "/order/track" },
   ];
 
@@ -58,14 +29,40 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-6 text-lg font-medium">
-          {navItems.map((item) => (
-            <li
-              key={item.name}
-              className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
-            >
-              <Link href={item.path}>{item.name}</Link>
-            </li>
-          ))}
+          {navItems.map((item) =>
+            item.dropdown ? (
+              <li
+                key={item.name}
+                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                <span>{item.name}</span>
+                {servicesOpen && (
+                  // <ul className="absolute top-full left-0 bg-white text-black shadow-lg rounded pt-1 w-56">
+                  <ul className="absolute top-full left-0 bg-black text-white shadow-lg rounded pt-1 w-56">
+                    {serviceDropdown.map((sub) => (
+                      <li key={sub.name}>
+                        <Link
+                          href={sub.path}
+                          className="block px-4 py-2 hover:bg-yellow-400 hover:text-black"
+                        >
+                          {sub.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ) : (
+              <li
+                key={item.name}
+                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
+              >
+                <Link href={item.path}>{item.name}</Link>
+              </li>
+            )
+          )}
         </ul>
 
         {/* Mobile Menu Button */}
@@ -82,7 +79,12 @@ export default function Navbar() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             ) : (
               <svg
@@ -92,7 +94,12 @@ export default function Navbar() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             )}
           </button>
@@ -102,15 +109,36 @@ export default function Navbar() {
       {/* Mobile Menu Items */}
       {menuOpen && (
         <ul className="md:hidden flex flex-col gap-2 px-4 pb-4">
-          {navItems.map((item) => (
-            <li
-              key={item.name}
-              className="px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
-              onClick={() => setMenuOpen(false)}
-            >
-              <Link href={item.path}>{item.name}</Link>
-            </li>
-          ))}
+          {navItems.map((item) =>
+            item.dropdown ? (
+              <li key={item.name}>
+                <span className="block px-4 py-2 font-semibold">
+                  {item.name}
+                </span>
+                <ul className="pl-6">
+                  {serviceDropdown.map((sub) => (
+                    <li key={sub.name}>
+                      <Link
+                        href={sub.path}
+                        className="block px-4 py-2 hover:bg-yellow-400 hover:text-black rounded"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {sub.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li
+                key={item.name}
+                className="px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                <Link href={item.path}>{item.name}</Link>
+              </li>
+            )
+          )}
         </ul>
       )}
     </nav>

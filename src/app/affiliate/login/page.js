@@ -2,18 +2,20 @@
 
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AffiliateLogin() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // যদি form submit এ কল করা হয়
+    e.preventDefault();
     try {
       const res = await fetch("https://drimtuch-server.onrender.com/api/affiliate/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }), // email/password অবশ্যই state বা variable থেকে আসবে
+        body: JSON.stringify({ email, password }),
       });
 
       if (!res.ok) {
@@ -23,22 +25,16 @@ export default function AffiliateLogin() {
 
       const data = await res.json();
 
-
-      //   localStorage.setItem("affiliateToken", data.token);
-
-      localStorage.setItem("token", data.token); // ✅ save token
+      localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify({ _id: data.userId }));
 
-
-      // Redirect to dashboard
-      window.location.href = "/affiliate/dashboard";
-
+      // ✅ Redirect using router
+      router.push("/affiliate/dashboard");
     } catch (error) {
       console.error("Login error:", error);
       alert(error.message || "Something went wrong. Please try again.");
     }
   };
-
 
   return (
     <div>
@@ -81,7 +77,6 @@ export default function AffiliateLogin() {
               Sign Up
             </a>
           </p>
-
         </div>
       </div>
     </div>

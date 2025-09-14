@@ -121,7 +121,7 @@ function OrderForm() {
       const data = await res.json();
 
       if (res.ok) {
-        alert(`Order placed successfully! Your order number is ${data.orderNumber}`);
+        alert(`Order placed successfully! Your order number is ${data.orderNumber} Save Your Order Number for futher query`);
         setCustomerName("");
         setCustomerEmail("");
         setCustomerPhone("");
