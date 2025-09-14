@@ -133,7 +133,7 @@ export async function generateStaticParams() {
 export default async function ServicesByCategoryPage({ params }) {
   const { category } = await params;
 
-  const res = await fetch(`https://drimtuch-server.onrender.com/api/services?category=${category}`);
+  const res = await fetch(`https://drimtuch-server.onrender.com/api/services?category=${category}`, { cache: "no-store" });
   const services = await res.json();
 
   return (
