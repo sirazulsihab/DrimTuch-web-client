@@ -31,7 +31,8 @@ export default function AffiliateDashboard() {
         console.log("affiliate Data", data);
 
         // Fetch withdraw history
-        const histRes = await fetch("https://drimtuch-server.onrender.com/api/affiliate/withdraw-history", {
+        // const histRes = await fetch("https://drimtuch-server.onrender.com/api/affiliate/withdraw-history", {
+        const histRes = await fetch("http://localhost:5000/api/affiliate/withdraw-history", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (histRes.ok) {
@@ -211,20 +212,53 @@ export default function AffiliateDashboard() {
 
 
         {/* Withdraw History */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mt-8">
-          <h3 className="text-xl font-bold mb-2">Withdraw History</h3>
-          {history.length === 0 ? (
-            <p className="text-gray-500 text-center">No Data Available</p>
-          ) : (
-            <ul className="list-disc list-inside">
-              {history.map((w, idx) => (
-                <li key={idx}>
-                  {w.amount} - {w.status} - {new Date(w.createdAt).toLocaleDateString()}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+      <div className="bg-white rounded-2xl shadow-lg p-6 mt-8">
+        <h3 className="text-xl font-bold mb-4">Withdraw History</h3>
+
+        {history.length === 0 ? (
+          <p className="text-gray-500 text-center">No Data Available</p>
+        ) : (
+          <table className="min-w-full border text-sm">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border px-2 py-1">#</th>
+                <th className="border px-2 py-1">Amount</th>
+                <th className="border px-2 py-1">Status</th>
+                <th className="border px-2 py-1">Requested At</th>
+                <th className="border px-2 py-1">Processed At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {history.map((w, idx) => {
+                // 🔹 Status Badge
+                let statusColor = "bg-gray-200 text-gray-800";
+                if (w.status === "pending") statusColor = "bg-yellow-100 text-yellow-700";
+                if (w.status === "approved") statusColor = "bg-green-100 text-green-700";
+                if (w.status === "rejected") statusColor = "bg-red-100 text-red-700";
+
+                return (
+                  <tr key={idx} className="hover:bg-gray-50">
+                    <td className="border px-2 py-1">{idx + 1}</td>
+                    <td className="border px-2 py-1 font-semibold">৳ {w.amount}</td>
+                    <td className="border px-2 py-1">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded ${statusColor}`}>
+                        {w.status.charAt(0).toUpperCase() + w.status.slice(1)}
+                      </span>
+                    </td>
+                    <td className="border px-2 py-1">
+                      {w.requestedAt ? new Date(w.requestedAt).toLocaleString() : "-"}
+                    </td>
+                    <td className="border px-2 py-1">
+                      {w.processedAt ? new Date(w.processedAt).toLocaleString() : "-"}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+      </div>
+
       </div>
     </div>
   );

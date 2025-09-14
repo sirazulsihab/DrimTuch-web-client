@@ -6,18 +6,16 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
-  // Navigation Items
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "#", dropdown: true },
     { name: "ঘরে বসে আয়", path: "/affiliate/dashboard" },
     { name: "এরিয়া পার্টনার", path: "#" },
-    { name: "About Us", path: "/about" },   
+    { name: "About Us", path: "/about" },
     { name: "Mission & Vision", path: "#" },
     { name: "Contact", path: "/contact" },
   ];
 
-  // Dropdown for Services
   const serviceDropdown = [
     { name: "ডিজিটাল মার্কেটিং", path: "/services/digital-marketing/" },
     { name: "ডিজিটাল সার্ভিসেস", path: "/services/digital-services/" },
@@ -36,12 +34,12 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6 text-lg font-medium">
+        <ul className="hidden md:flex text-lg font-medium">
           {navItems.map((item) =>
             item.dropdown ? (
               <li
                 key={item.name}
-                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
+                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition custom-3d"
                 onMouseEnter={() => setServicesOpen(true)}
                 onMouseLeave={() => setServicesOpen(false)}
               >
@@ -49,10 +47,10 @@ export default function Navbar() {
                 {servicesOpen && (
                   <ul className="absolute top-full left-0 bg-black text-white shadow-lg rounded pt-1 w-56">
                     {serviceDropdown.map((sub) => (
-                      <li key={sub.name}>
+                      <li key={sub.name} className="custom-3d m-1 rounded">
                         <Link
                           href={sub.path}
-                          className="block px-4 py-2 hover:bg-yellow-400 hover:text-black"
+                          className="block px-4 py-2 hover:bg-yellow-400 hover:text-black rounded"
                         >
                           {sub.name}
                         </Link>
@@ -64,7 +62,7 @@ export default function Navbar() {
             ) : (
               <li
                 key={item.name}
-                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
+                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition custom-3d"
               >
                 <Link href={item.path}>{item.name}</Link>
               </li>
@@ -118,13 +116,13 @@ export default function Navbar() {
         <ul className="md:hidden flex flex-col gap-2 px-4 pb-4">
           {navItems.map((item) =>
             item.dropdown ? (
-              <li key={item.name}>
+              <li key={item.name} className="custom-3d rounded">
                 <span className="block px-4 py-2 font-semibold">
                   {item.name}
                 </span>
                 <ul className="pl-6">
                   {serviceDropdown.map((sub) => (
-                    <li key={sub.name}>
+                    <li key={sub.name} className="custom-3d my-1 rounded">
                       <Link
                         href={sub.path}
                         className="block px-4 py-2 hover:bg-yellow-400 hover:text-black rounded"
@@ -139,7 +137,7 @@ export default function Navbar() {
             ) : (
               <li
                 key={item.name}
-                className="px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition"
+                className="px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition custom-3d"
                 onClick={() => setMenuOpen(false)}
               >
                 <Link href={item.path}>{item.name}</Link>
