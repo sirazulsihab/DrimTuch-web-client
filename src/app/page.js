@@ -69,7 +69,7 @@ export default function Home() {
           Welcome to DrimTuch
         </h1>
         <p className="text-lg md:text-xl text-white">
-          আপনার সকল ডিজিটাল সলিউশনের জন্য এক ঠিকানা --For Test Build--
+          আপনার সকল ডিজিটাল সলিউশনের জন্য এক ঠিকানা
         </p>
       </section>
 
@@ -87,11 +87,13 @@ export default function Home() {
                   <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
                     <div className="relative w-full h-48">
                       <Image
-                        src={cat.img}
+                        // src={cat.img}
+                        src={cat.img.startsWith("http") ? cat.img : `https://drimtuch-server.onrender.com${cat.img}`}
                         alt={cat.title}
                         fill
                         className="object-cover rounded-t-2xl"
                       />
+                      {console.log("check cat.img", cat.img)}
                     </div>
 
                     {/* <Image
