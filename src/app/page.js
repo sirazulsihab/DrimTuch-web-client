@@ -69,7 +69,7 @@ export default function Home() {
           Welcome to DrimTuch
         </h1>
         <p className="text-lg md:text-xl text-white">
-          আপনার সকল ডিজিটাল সলিউশনের জন্য এক ঠিকানা
+          আপনার সকল ডিজিটাল সলিউশনের জন্য এক ঠিকানা --For Test Build--
         </p>
       </section>
 
