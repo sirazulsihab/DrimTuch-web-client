@@ -31,8 +31,7 @@ export default function AffiliateDashboard() {
         console.log("affiliate Data", data);
 
         // Fetch withdraw history
-        // const histRes = await fetch("https://drimtuch-server.onrender.com/api/affiliate/withdraw-history", {
-        const histRes = await fetch("http://localhost:5000/api/affiliate/withdraw-history", {
+        const histRes = await fetch("https://drimtuch-server.onrender.com/api/affiliate/withdraw-history", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (histRes.ok) {
