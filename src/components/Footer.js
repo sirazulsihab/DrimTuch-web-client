@@ -4,7 +4,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-yellow-400 text-center py-6">
+    <footer className="bg-black text-orange-600 text-center py-6">
       <p>© {year} DrimTuch. All Rights Reserved. | Developed By MynoSoft Technology</p>
     </footer>
   );

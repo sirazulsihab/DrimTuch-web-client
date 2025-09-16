@@ -87,10 +87,10 @@ export default function AffiliateDashboard() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="container mx-auto px-6 py-12">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-yellow-400">Affiliate Dashboard</h2>
+          <h2 className="text-3xl font-bold text-orange-600">Affiliate Dashboard</h2>
           <button
             onClick={logout}
             className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition cursor-pointer"
@@ -98,44 +98,33 @@ export default function AffiliateDashboard() {
             Logout
           </button>
         </div>
-
+        {/* Earnings Row */}
         <div className="grid md:grid-cols-5 gap-6">
-          <div className="bg-black text-yellow-400 rounded-2xl shadow-lg p-6">
+          <div className="bg-black text-orange-600 rounded-2xl shadow-lg p-6">
             <h3 className="text-xl font-semibold mb-2">Total Earnings</h3>
             <p className="text-3xl font-bold">৳ {affiliate.totalEarnings}</p>
           </div>
 
-          <div className="bg-black text-yellow-400 rounded-2xl shadow-lg p-6">
+          <div className="bg-black text-orange-600 rounded-2xl shadow-lg p-6">
             <h3 className="text-xl font-semibold mb-2">Pending Earnings</h3>
             <p className="text-3xl font-bold">৳ {affiliate.pendingEarnings}</p>
           </div>
 
-          <div className="bg-black text-yellow-400 rounded-2xl shadow-lg p-6">
+          {/* ✅ Paid Balance (placeholder, backend later) */}
+          <div className="bg-black text-orange-600 rounded-2xl shadow-lg p-6">
+            <h3 className="text-xl font-semibold mb-2">Paid Balance</h3>
+            <p className="text-3xl font-bold">৳ {affiliate.paidBalance || 0}</p>
+          </div>
+
+          <div className="bg-black text-orange-600 rounded-2xl shadow-lg p-6">
             <h3 className="text-xl font-semibold mb-2">Available Balance</h3>
             <p className="text-3xl font-bold">৳ {affiliate.availableBalance}</p>
           </div>
 
-          {/* ✅ Successful Referrals */}
-          <div className="bg-black text-yellow-400 rounded-2xl shadow-lg p-6">
+          <div className="bg-black text-orange-600 rounded-2xl shadow-lg p-6">
             <h3 className="text-xl font-semibold mb-2">Successful Referrals</h3>
             <p className="text-3xl font-bold">{affiliate.successfulReferrals || 0}</p>
           </div>
-
-          <div className="bg-black text-yellow-400 rounded-2xl shadow-lg p-6">
-            <h3 className="text-xl font-semibold mb-2">Wallet Number</h3>
-            <p className="text-lg">
-              {affiliate.paymentMethod && affiliate.paymentNumber?.trim() !== ""
-                ? affiliate.walletNumber
-                : "Not set"}
-            </p>
-            {affiliate.paymentMethod && affiliate.paymentNumber && (
-              <p className="mt-2 text-sm">
-                Method: {affiliate.paymentMethod.toUpperCase()} - {affiliate.paymentNumber}
-              </p>
-            )}
-          </div>
-
-
         </div>
 
 
@@ -148,43 +137,61 @@ export default function AffiliateDashboard() {
               navigator.clipboard.writeText(referralLink);
               alert("Referral link copied!");
             }}
-            className="px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-black hover:text-yellow-400 transition cursor-pointer"
+            className="px-4 py-2 bg-orange-600 text-black rounded-lg hover:bg-black hover:text-orange-600 transition cursor-pointer"
           >
             Copy Link
           </button>
         </div>
 
-        {/* Payment Method Update */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mt-8">
-          <h3 className="text-xl font-bold mb-2">Update Payment Method</h3>
-          <select
-            className="border p-2"
-            value={method}
-            onChange={(e) => setMethod(e.target.value)}
-          >
-            <option value="">Select Method</option>
-            <option value="bkash">Bkash</option>
-            <option value="nagad">Nagad</option>
-            <option value="rocket">Rocket</option>
-          </select>
-          <input
-            type="text"
-            placeholder="Wallet Number"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            className="border p-2 ml-2"
-          />
-          <button
-            onClick={updatePayment}
-            className="px-4 py-2 bg-yellow-500 text-black rounded-lg ml-2"
-          >
-            Save
-          </button>
-          {affiliate.paymentUpdatedAt &&
-            new Date(affiliate.paymentUpdatedAt) > new Date(new Date().setMonth(new Date().getMonth() - 1)) && (
-              <p className="text-red-500 mt-2">You can update payment method only once per month</p>
+        {/* Payment Section */}
+        <div className="grid md:grid-cols-2 gap-6 mt-8">
+          {/* Update Payment Method */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h3 className="text-xl font-bold mb-2">Update Payment Method</h3>
+            <select
+              className="border p-2"
+              value={method}
+              onChange={(e) => setMethod(e.target.value)}
+            >
+              <option value="">Select Method</option>
+              <option value="bkash">Bkash</option>
+              <option value="nagad">Nagad</option>
+              <option value="rocket">Rocket</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Wallet Number"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              className="border p-2 ml-2"
+            />
+            <button
+              onClick={updatePayment}
+              className="px-4 py-2 bg-orange-600 text-black rounded-lg ml-2"
+            >
+              Save
+            </button>
+            {affiliate.paymentUpdatedAt &&
+              new Date(affiliate.paymentUpdatedAt) > new Date(new Date().setMonth(new Date().getMonth() - 1)) && (
+                <p className="text-red-500 mt-2">
+                  You can update payment method only once per month
+                </p>
+              )}
+          </div>
+
+          {/* ✅ Show Current Wallet Info */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h3 className="text-xl font-bold mb-2">Current Wallet</h3>
+            {affiliate.paymentMethod && affiliate.paymentNumber ? (
+              <p className="text-lg">
+                {affiliate.paymentMethod.toUpperCase()} - {affiliate.paymentNumber}
+              </p>
+            ) : (
+              <p className="text-gray-500">Not set</p>
             )}
+          </div>
         </div>
+
 
         {/* Withdraw */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mt-8">
@@ -200,7 +207,7 @@ export default function AffiliateDashboard() {
             onClick={requestWithdraw}
             disabled={affiliate.availableBalance < 1000}
             className={`px-4 py-2 rounded-lg ${affiliate.availableBalance >= 1000
-              ? "bg-yellow-500 text-black hover:bg-black hover:text-yellow-400 transition"
+              ? "bg-orange-600 text-black hover:bg-black hover:text-orange-600 transition"
               : "bg-gray-400 text-gray-700 cursor-not-allowed"
               }`}
           >
@@ -211,52 +218,67 @@ export default function AffiliateDashboard() {
 
 
         {/* Withdraw History */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mt-8">
-        <h3 className="text-xl font-bold mb-4">Withdraw History</h3>
+        <div className="bg-white rounded-2xl shadow-lg p-6 mt-8">
+          <h3 className="text-xl font-bold mb-4">Withdraw History</h3>
 
-        {history.length === 0 ? (
-          <p className="text-gray-500 text-center">No Data Available</p>
-        ) : (
-          <table className="min-w-full border text-sm">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="border px-2 py-1">#</th>
-                <th className="border px-2 py-1">Amount</th>
-                <th className="border px-2 py-1">Status</th>
-                <th className="border px-2 py-1">Requested At</th>
-                <th className="border px-2 py-1">Processed At</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.map((w, idx) => {
-                // 🔹 Status Badge
-                let statusColor = "bg-gray-200 text-gray-800";
-                if (w.status === "pending") statusColor = "bg-yellow-100 text-yellow-700";
-                if (w.status === "approved") statusColor = "bg-green-100 text-green-700";
-                if (w.status === "rejected") statusColor = "bg-red-100 text-red-700";
+          {history.length === 0 ? (
+            <p className="text-gray-500 text-center">No Data Available</p>
+          ) : (
+            <table className="min-w-full border text-sm">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="border px-2 py-1">#</th>
+                  <th className="border px-2 py-1">Amount</th>
+                  <th className="border px-2 py-1">Method</th>
+                  <th className="border px-2 py-1">Status</th>
+                  <th className="border px-2 py-1">Requested At</th>
+                  <th className="border px-2 py-1">Processed At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.map((w, idx) => {
+                  let statusColor = "bg-gray-200 text-gray-800";
+                  if (w.status === "pending") statusColor = "bg-yellow-100 text-yellow-700";
+                  if (w.status === "approved") statusColor = "bg-green-100 text-green-700";
+                  if (w.status === "rejected") statusColor = "bg-red-100 text-red-700";
 
-                return (
-                  <tr key={idx} className="hover:bg-gray-50">
-                    <td className="border px-2 py-1">{idx + 1}</td>
-                    <td className="border px-2 py-1 font-semibold">৳ {w.amount}</td>
-                    <td className="border px-2 py-1">
-                      <span className={`px-2 py-1 text-xs font-semibold rounded ${statusColor}`}>
-                        {w.status.charAt(0).toUpperCase() + w.status.slice(1)}
-                      </span>
-                    </td>
-                    <td className="border px-2 py-1">
-                      {w.requestedAt ? new Date(w.requestedAt).toLocaleString() : "-"}
-                    </td>
-                    <td className="border px-2 py-1">
-                      {w.processedAt ? new Date(w.processedAt).toLocaleString() : "-"}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        )}
-      </div>
+                  return (
+                    <tr key={idx} className="hover:bg-gray-50">
+                      <td className="border px-2 py-1">{idx + 1}</td>
+                      <td className="border px-2 py-1 font-semibold">৳ {w.amount}</td>
+
+                      {/* ✅ Show Payment Method */}
+                      <td className="border px-2 py-1">
+                        {w.paymentMethod ? (
+                          <span className="font-medium">
+                            {w.paymentMethod.toUpperCase()} - {w.paymentNumber}
+                          </span>
+                        ) : (
+                          "-"
+                        )}
+                      </td>
+
+                      <td className="border px-2 py-1">
+                        <span
+                          className={`px-2 py-1 text-xs font-semibold rounded ${statusColor}`}
+                        >
+                          {w.status.charAt(0).toUpperCase() + w.status.slice(1)}
+                        </span>
+                      </td>
+                      <td className="border px-2 py-1">
+                        {w.requestedAt ? new Date(w.requestedAt).toLocaleString() : "-"}
+                      </td>
+                      <td className="border px-2 py-1">
+                        {w.processedAt ? new Date(w.processedAt).toLocaleString() : "-"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
+        </div>
+
 
       </div>
     </div>

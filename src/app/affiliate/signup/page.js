@@ -137,7 +137,7 @@ export default function AffiliateSignup() {
     <div>
       <Navbar />
       <div className="min-h-screen flex items-center justify-center bg-black px-4">
-        <div className="bg-gray-900 p-8 rounded-2xl shadow-lg w-full max-w-lg text-yellow-400">
+        <div className="bg-gray-900 p-8 rounded-2xl shadow-lg w-full max-w-lg text-orange-600">
           <h1 className="text-3xl font-bold text-center mb-6">
             Affiliate Signup
           </h1>
@@ -153,7 +153,7 @@ export default function AffiliateSignup() {
                 type="text"
                 name="name"
                 placeholder="Enter your full name"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.name}
                 onChange={handleChange}
                 required
@@ -167,7 +167,7 @@ export default function AffiliateSignup() {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.email}
                 onChange={handleChange}
                 required
@@ -181,7 +181,7 @@ export default function AffiliateSignup() {
                 type="tel"
                 name="phone"
                 placeholder="Enter your phone number"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.phone}
                 onChange={handleChange}
                 required
@@ -193,7 +193,7 @@ export default function AffiliateSignup() {
               <label className="block mb-1 font-medium">Select Package</label>
               <select
                 name="package"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.package}
                 onChange={handleChange}
                 required
@@ -226,7 +226,7 @@ export default function AffiliateSignup() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Basic Package */}
                 <label className={`p-4 rounded-xl border-2 cursor-pointer transition 
-                    ${form.package === "basic" ? "border-yellow-500 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
+                    ${form.package === "basic" ? "border-orange-600 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
                   <input
                     type="radio"
                     name="package"
@@ -237,14 +237,14 @@ export default function AffiliateSignup() {
                   />
                   <h3 className="text-xl font-bold">Basic</h3>
                   <p className="text-gray-300">1000৳</p>
-                  <p className="text-yellow-400 font-medium">
+                  <p className="text-orange-600 font-medium">
                     Commission {packages.basic.commission}%
                   </p>
                 </label>
 
                 {/* Standard Package */}
                 <label className={`p-4 rounded-xl border-2 cursor-pointer transition 
-                    ${form.package === "standard" ? "border-yellow-500 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
+                    ${form.package === "standard" ? "border-orange-600 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
                   <input
                     type="radio"
                     name="package"
@@ -255,14 +255,14 @@ export default function AffiliateSignup() {
                   />
                   <h3 className="text-xl font-bold">Standard</h3>
                   <p className="text-gray-300">1500৳</p>
-                  <p className="text-yellow-400 font-medium">
+                  <p className="text-orange-600 font-medium">
                     Commission {packages.standard.commission}%
                   </p>
                 </label>
 
                 {/* Premium Package */}
                 <label className={`p-4 rounded-xl border-2 cursor-pointer transition 
-                    ${form.package === "premium" ? "border-yellow-500 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
+                    ${form.package === "premium" ? "border-orange-600 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
                   <input
                     type="radio"
                     name="package"
@@ -273,7 +273,7 @@ export default function AffiliateSignup() {
                   />
                   <h3 className="text-xl font-bold">Premium</h3>
                   <p className="text-gray-300">2000৳</p>
-                  <p className="text-yellow-400 font-medium">
+                  <p className="text-orange-600 font-medium">
                     Commission {packages.premium.commission}%
                   </p>
                 </label>
@@ -296,7 +296,7 @@ export default function AffiliateSignup() {
               <label className="block mb-1 font-medium">Select Course</label>
               <select
                 name="selectedCourse"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.selectedCourse}
                 onChange={handleChange}
                 required
@@ -327,13 +327,13 @@ export default function AffiliateSignup() {
                     className={`cursor-pointer p-4 rounded-xl border transition 
                       ${
                         form.selectedCourse === course
-                          ? "border-yellow-500 bg-gray-900 shadow-lg"
-                          : "border-gray-700 bg-gray-800 hover:border-yellow-400"
+                          ? "border-orange-600 bg-gray-900 shadow-lg"
+                          : "border-gray-700 bg-gray-800 hover:border-orange-600"
                       }`}
                   >
                     <p
                       className={`text-center font-medium ${
-                        form.selectedCourse === course ? "text-yellow-400" : "text-white"
+                        form.selectedCourse === course ? "text-orange-600" : "text-white"
                       }`}
                     >
                       {course}
@@ -349,7 +349,7 @@ export default function AffiliateSignup() {
               <label className="block mb-1 font-medium">Payment Method</label>
               <select
                 name="paymentMethod"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.paymentMethod}
                 onChange={handleChange}
                 required
@@ -377,7 +377,7 @@ export default function AffiliateSignup() {
                 type="text"
                 name="transactionId"
                 placeholder="Enter your transaction ID"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.transactionId}
                 onChange={handleChange}
                 required
@@ -391,7 +391,7 @@ export default function AffiliateSignup() {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.password}
                 onChange={handleChange}
                 required
@@ -399,7 +399,7 @@ export default function AffiliateSignup() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute top-3 right-3 text-yellow-400 font-semibold"
+                className="absolute top-3 right-3 text-orange-600 font-semibold"
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
@@ -412,7 +412,7 @@ export default function AffiliateSignup() {
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Confirm your password"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
                 value={form.confirmPassword}
                 onChange={handleChange}
                 required
@@ -420,7 +420,7 @@ export default function AffiliateSignup() {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute top-3 right-3 text-yellow-400 font-semibold"
+                className="absolute top-3 right-3 text-orange-600 font-semibold"
               >
                 {showConfirmPassword ? "Hide" : "Show"}
               </button>
@@ -429,7 +429,7 @@ export default function AffiliateSignup() {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full py-3 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition cursor-pointer"
+              className="w-full py-3 bg-orange-600 text-black font-bold rounded-lg hover:bg-orange-600 transition cursor-pointer"
             >
               Register
             </button>
@@ -439,7 +439,7 @@ export default function AffiliateSignup() {
             Already have an account?{" "}
             <a
               href="/affiliate/login"
-              className="text-yellow-500 hover:underline font-semibold"
+              className="text-orange-600 hover:underline font-semibold"
             >
               Login here
             </a>

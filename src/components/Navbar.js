@@ -28,12 +28,13 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-black text-yellow-400 sticky top-0 z-50 shadow-md">
+    <nav className="bg-black text-orange-600 sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:px-8">
         {/* Logo */}
         <div className="text-2xl font-bold">
           <Link href="/">
           <Image src={logo}
+            alt="DrimTuch Logo"
             width={75}
             height={75}
           />
@@ -46,7 +47,7 @@ export default function Navbar() {
             item.dropdown ? (
               <li
                 key={item.name}
-                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition custom-3d"
+                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-orange-600 transition custom-3d"
                 onMouseEnter={() => setServicesOpen(true)}
                 onMouseLeave={() => setServicesOpen(false)}
               >
@@ -57,7 +58,7 @@ export default function Navbar() {
                       <li key={sub.name} className="custom-3d m-1 rounded">
                         <Link
                           href={sub.path}
-                          className="block px-4 py-2 hover:bg-yellow-400 hover:text-black rounded"
+                          className="block px-4 py-2 hover:bg-orange-600 hover:text-black rounded"
                         >
                           {sub.name}
                         </Link>
@@ -69,7 +70,7 @@ export default function Navbar() {
             ) : (
               <li
                 key={item.name}
-                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition custom-3d"
+                className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-orange-600 transition custom-3d"
               >
                 <Link href={item.path}>{item.name}</Link>
               </li>
@@ -132,7 +133,7 @@ export default function Navbar() {
                     <li key={sub.name} className="custom-3d my-1 rounded">
                       <Link
                         href={sub.path}
-                        className="block px-4 py-2 hover:bg-yellow-400 hover:text-black rounded"
+                        className="block px-4 py-2 hover:bg-orange-600 hover:text-black rounded"
                         onClick={() => setMenuOpen(false)}
                       >
                         {sub.name}
@@ -144,7 +145,7 @@ export default function Navbar() {
             ) : (
               <li
                 key={item.name}
-                className="px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-yellow-400 transition custom-3d"
+                className="px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-orange-600 transition custom-3d"
                 onClick={() => setMenuOpen(false)}
               >
                 <Link href={item.path}>{item.name}</Link>

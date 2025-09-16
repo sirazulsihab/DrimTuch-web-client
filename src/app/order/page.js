@@ -141,8 +141,8 @@ function OrderForm() {
   return (
     <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
       {/* Left Section */}
-      <div className="md:col-span-2 space-y-6 bg-white p-6 rounded-xl shadow-lg border border-yellow-400">
-        <h2 className="text-3xl font-bold text-yellow-500 mb-4">Place Your Order</h2>
+      <div className="md:col-span-2 space-y-6 bg-white p-6 rounded-xl shadow-lg border border-orange-600">
+        <h2 className="text-3xl font-bold text-orange-600 text-center rounded-xl p-2 bg-black mb-4">Submit Your Project</h2>
 
         <div className="space-y-4">
           <input
@@ -150,21 +150,21 @@ function OrderForm() {
             placeholder="Your Name"
             value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
-            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-orange-600"
           />
           <input
             type="email"
             placeholder="Your Email (Optional)"
             value={customerEmail}
             onChange={(e) => setCustomerEmail(e.target.value)}
-            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-orange-600"
           />
           <input
             type="text"
             placeholder="Phone Number"
             value={customerPhone}
             onChange={(e) => setCustomerPhone(e.target.value)}
-            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-orange-600"
           />
 
           {/* Coupon */}
@@ -174,19 +174,19 @@ function OrderForm() {
               placeholder="Coupon Code"
               value={coupon}
               onChange={(e) => setCoupon(e.target.value)}
-              className="border p-3 w-full rounded-l focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              className="border p-3 w-full rounded-l focus:outline-none focus:ring-2 focus:ring-orange-600"
             />
             <button
               onClick={applyCoupon}
-              className="px-5 bg-yellow-500 text-black rounded-r hover:bg-black hover:text-yellow-400 transition font-semibold"
+              className="px-5 bg-orange-600 text-black rounded-r hover:bg-black hover:text-orange-600 transition font-semibold"
             >
-              Apply
+              CLAIM
             </button>
           </div>
 
           {/* Payment Method */}
           <select
-            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-orange-600"
             value={paymentMethod}
             onChange={(e) => setPaymentMethod(e.target.value)}
           >
@@ -208,26 +208,26 @@ function OrderForm() {
             placeholder="Transaction ID"
             value={transactionId}
             onChange={(e) => setTransactionId(e.target.value)}
-            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-orange-600"
           />
 
           <button
             onClick={placeOrder}
-            className="w-full py-3 bg-yellow-500 text-black font-semibold rounded hover:bg-black hover:text-yellow-400 transition cursor-pointer"
+            className="w-full py-3 bg-orange-600 text-black font-semibold rounded hover:bg-black hover:text-orange-600 transition cursor-pointer"
           >
-            Place Order
+            Submit Project
           </button>
         </div>
       </div>
 
       {/* Right Section - Summary */}
-      <div className="bg-gray-100 p-6 rounded-xl shadow-lg border border-yellow-400">
-        <h3 className="text-xl font-bold mb-4">Order Summary</h3>
+      <div className="bg-gray-100 p-6 rounded-xl shadow-lg border border-orange-600">
+        <h3 className="text-xl font-bold mb-4">Project Summary</h3>
         <p className="flex justify-between mb-2">
-          <span>Service:</span> <span>{title}</span>
+          <span>Project:</span> <span>{title}</span>
         </p>
         <p className="flex justify-between mb-2">
-          <span>Price:</span> <span>৳ {price}</span>
+          <span>Project Cost:</span> <span>৳ {price}</span>
         </p>
         {discount > 0 && (
           <p className="flex justify-between text-green-600 mb-2">
@@ -250,3 +250,6 @@ export default function OrderPage() {
     </Suspense>
   );
 }
+
+
+

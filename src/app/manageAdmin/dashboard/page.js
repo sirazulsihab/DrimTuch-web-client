@@ -20,7 +20,7 @@ export default function AdminDashboard() {
 
   // Sidebar বাটনের ক্লাস
   const sidebarBtnClass =
-    "mb-2 text-left px-3 py-2 rounded transition-colors duration-200 font-semibold hover:bg-yellow-500 hover:text-black";
+    "mb-2 text-left px-3 py-2 rounded transition-colors duration-200 font-semibold hover:bg-orange-600 hover:text-black";
 
   return (
     <div>
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen flex bg-gray-100">
         {/* Sidebar */}
         <div className="w-64 bg-white shadow p-4 flex flex-col">
-          <h2 className="text-xl font-bold mb-6 text-yellow-500">Admin Dashboard</h2>
+          <h2 className="text-xl font-bold mb-6 text-orange-600">Admin Dashboard</h2>
 
           <button onClick={() => setTab("orders")} className={sidebarBtnClass}>
             Orders

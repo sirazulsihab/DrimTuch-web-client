@@ -20,7 +20,7 @@
 
 //   return (
 //     <div>
-//       <h2 className="text-xl font-bold mb-4 text-yellow-500">All Affiliates</h2>
+//       <h2 className="text-xl font-bold mb-4 text-orange-600">All Affiliates</h2>
 //       <div className="overflow-x-auto">
 //         <table className="min-w-full border">
 //           <thead className="bg-gray-100">
@@ -103,7 +103,7 @@ export default function Affiliates() {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4 text-yellow-500">All Affiliates</h2>
+      <h2 className="text-xl font-bold mb-4 text-orange-600">All Affiliates</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full border">
           <thead className="bg-gray-100">

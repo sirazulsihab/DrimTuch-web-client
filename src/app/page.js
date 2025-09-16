@@ -64,7 +64,7 @@ export default function Home() {
       <Navbar />
 
       {/* Banner */}
-      <section className="h-[60vh] flex flex-col justify-center items-center bg-black text-yellow-400 text-center">
+      <section className="h-[60vh] flex flex-col justify-center items-center bg-black text-orange-600 text-center">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
           Welcome to DrimTuch
         </h1>
@@ -76,7 +76,7 @@ export default function Home() {
       {/* Categories */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-primary text-center mb-12">
             আমাদের সার্ভিস ক্যাটাগরি
           </h2>
 
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
 
       {/* ✅ Affiliate Signup Section */}
-      <section className="px-8 py-16 bg-black text-yellow-400 text-center">
+      <section className="px-8 py-16 bg-black text-orange-600 text-center">
         <h2 className="text-3xl font-bold mb-6">
           সবার জন্য ঘরে বসে দারুন আয়ের সুযোগ
         </h2>
@@ -134,7 +134,7 @@ export default function Home() {
         </p>
         <button
           onClick={handleAffiliateClick}
-          className="custom-3d px-6 py-3 bg-yellow-500 text-black font-bold rounded-2xl hover:bg-white hover:text-black transition cursor-pointer"
+          className="custom-3d px-6 py-3 bg-orange-600 text-black font-bold rounded-2xl hover:bg-white hover:text-black transition cursor-pointer"
         >
           ঘরে বসে আয়
         </button>

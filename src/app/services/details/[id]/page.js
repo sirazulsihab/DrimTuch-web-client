@@ -127,7 +127,7 @@ export default function ServiceDetailsPage() {
                 service.title
               )}&price=${service.price}`}
             >
-              <button className="px-6 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-black hover:text-yellow-400 transition">
+              <button className="px-6 py-3 rounded-xl bg-orange-600 text-black font-bold hover:bg-black hover:text-orange-600 transition">
                 Order Now
               </button>
             </Link>

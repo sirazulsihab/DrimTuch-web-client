@@ -50,7 +50,7 @@ export default function AffiliateLogin() {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center bg-black text-yellow-400 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-black text-orange-600 px-4">
         <div className="bg-gray-900 p-8 rounded-2xl shadow-lg max-w-md w-full">
           <h2 className="text-2xl font-bold mb-6 text-center">Affiliate Login</h2>
 
@@ -58,7 +58,7 @@ export default function AffiliateLogin() {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -67,14 +67,14 @@ export default function AffiliateLogin() {
           <input
             type="password"
             placeholder="Enter your password"
-            className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <button
             onClick={handleLogin}
-            className="w-full py-3 mt-2 bg-yellow-500 text-black font-bold rounded-lg hover:bg-black hover:text-yellow-400 transition"
+            className="w-full py-3 mt-2 bg-orange-600 text-black font-bold rounded-lg hover:bg-black hover:text-orange-600 transition"
           >
             Login
           </button>
@@ -87,7 +87,7 @@ export default function AffiliateLogin() {
             Don&apos;t have an account?{" "}
             <a
               href="/affiliate/signup"
-              className="text-yellow-400 hover:text-yellow-200 font-semibold"
+              className="text-orange-600 hover:text-yellow-200 font-semibold"
             >
               Sign Up
             </a>
@@ -142,7 +142,7 @@ export default function AffiliateLogin() {
 //   return (
 //     <div>
 //       <Navbar />
-//       <div className="min-h-screen flex items-center justify-center bg-black text-yellow-400 px-4">
+//       <div className="min-h-screen flex items-center justify-center bg-black text-orange-600 px-4">
 //         <div className="bg-gray-900 p-8 rounded-2xl shadow-lg max-w-md w-full">
 //           <h2 className="text-2xl font-bold mb-6 text-center">Affiliate Login</h2>
 
@@ -150,7 +150,7 @@ export default function AffiliateLogin() {
 //           <input
 //             type="email"
 //             placeholder="Enter your email"
-//             className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+//             className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
 //             value={email}
 //             onChange={(e) => setEmail(e.target.value)}
 //           />
@@ -159,14 +159,14 @@ export default function AffiliateLogin() {
 //           <input
 //             type="password"
 //             placeholder="Enter your password"
-//             className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+//             className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-600"
 //             value={password}
 //             onChange={(e) => setPassword(e.target.value)}
 //           />
 
 //           <button
 //             onClick={handleLogin}
-//             className="w-full py-3 mt-2 bg-yellow-500 text-black font-bold rounded-lg hover:bg-black hover:text-yellow-400 transition"
+//             className="w-full py-3 mt-2 bg-orange-600 text-black font-bold rounded-lg hover:bg-black hover:text-orange-600 transition"
 //           >
 //             Login
 //           </button>
@@ -175,7 +175,7 @@ export default function AffiliateLogin() {
 //             Don&apos;t have an account?{" "}
 //             <a
 //               href="/affiliate/signup"
-//               className="text-yellow-400 hover:text-yellow-200 font-semibold"
+//               className="text-orange-600 hover:text-yellow-200 font-semibold"
 //             >
 //               Sign Up
 //             </a>

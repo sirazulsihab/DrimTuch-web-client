@@ -30,24 +30,24 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Left Column - Contact Info */}
           <div className="space-y-6">
-            <h1 className="text-4xl font-bold text-yellow-400">Contact Us</h1>
+            <h1 className="text-4xl font-bold text-orange-600">Contact Us</h1>
             <p className="text-gray-300">
               Reach out to us using the form or via the contact information below.
             </p>
 
             <div className="space-y-4">
               <div>
-                <h2 className="font-semibold text-yellow-400">Address</h2>
+                <h2 className="font-semibold text-orange-600">Address</h2>
                 <p className="text-gray-300">123 DrimTuch Street, Dhaka, Bangladesh</p>
               </div>
 
               <div>
-                <h2 className="font-semibold text-yellow-400">Phone</h2>
+                <h2 className="font-semibold text-orange-600">Phone</h2>
                 <p className="text-gray-300">+880 1700 123456</p>
               </div>
 
               <div>
-                <h2 className="font-semibold text-yellow-400">Email</h2>
+                <h2 className="font-semibold text-orange-600">Email</h2>
                 <p className="text-gray-300">info@drimtuch.com</p>
               </div>
             </div>
@@ -69,7 +69,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   placeholder="Your Name"
                   required
-                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-400"
+                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-orange-600"
                 />
               </div>
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   placeholder="Your Email"
                   required
-                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-400"
+                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-orange-600"
                 />
               </div>
 
@@ -95,13 +95,13 @@ export default function ContactPage() {
                   placeholder="Your Message"
                   required
                   rows={5}
-                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-400"
+                  className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-orange-600"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500 transition"
+                className="w-full bg-orange-600 text-black font-bold py-3 rounded-lg hover:bg-orange-600 transition"
               >
                 Send Message
               </button>

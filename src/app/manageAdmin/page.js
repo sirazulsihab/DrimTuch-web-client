@@ -66,7 +66,7 @@ export default function AdminLogin() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border p-3 w-full rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="border p-3 w-full rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-orange-600"
           />
 
           <input
@@ -74,7 +74,7 @@ export default function AdminLogin() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border p-3 w-full rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="border p-3 w-full rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-orange-600"
           />
 
           <button
@@ -83,7 +83,7 @@ export default function AdminLogin() {
             className={`w-full py-3 rounded-lg font-semibold transition ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-yellow-500 hover:bg-black hover:text-yellow-400"
+                : "bg-orange-600 hover:bg-black hover:text-orange-600"
             }`}
           >
             {loading ? "Logging in..." : "Login"}

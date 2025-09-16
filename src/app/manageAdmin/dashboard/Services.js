@@ -195,7 +195,7 @@ export default function Services() {
         </label>
         <button
           onClick={saveService}
-          className="bg-yellow-500 text-black px-4 py-2 rounded col-span-2"
+          className="bg-orange-600 text-black px-4 py-2 rounded col-span-2"
         >
           {editingService ? "Update Service" : "Add Service"}
         </button>

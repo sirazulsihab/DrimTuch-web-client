@@ -50,8 +50,8 @@ export default function TrackOrder() {
             <Navbar />
             <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
                 {/* Left Section - Track Order Form */}
-                <div className="md:col-span-2 space-y-6 bg-white p-6 rounded-xl shadow-lg border border-yellow-400">
-                    <h2 className="text-3xl font-bold text-yellow-500 mb-4">Track Your Order</h2>
+                <div className="md:col-span-2 space-y-6 bg-white p-6 rounded-xl shadow-lg border border-orange-600">
+                    <h2 className="text-3xl font-bold text-orange-600 mb-4">Track Your Order</h2>
 
                     <div className="space-y-4">
                         <input
@@ -59,12 +59,12 @@ export default function TrackOrder() {
                             placeholder="Enter Order Number"
                             value={orderNumber}
                             onChange={(e) => setOrderNumber(e.target.value)}
-                            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                            className="border p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-orange-600"
                         />
 
                         <button
                             onClick={handleTrack}
-                            className="w-full py-3 bg-yellow-500 text-black font-semibold rounded hover:bg-black hover:text-yellow-400 transition"
+                            className="w-full py-3 bg-orange-600 text-black font-semibold rounded hover:bg-black hover:text-orange-600 transition"
                         >
                             Track Order
                         </button>
@@ -75,7 +75,7 @@ export default function TrackOrder() {
 
                 {/* Right Section - Order Details */}
                 {order && (
-                    <div className="bg-gray-100 p-6 rounded-xl shadow-lg border border-yellow-400 md:col-span-3">
+                    <div className="bg-gray-100 p-6 rounded-xl shadow-lg border border-orange-600 md:col-span-3">
                         <h3 className="text-xl font-bold mb-4">Order Details</h3>
                         <p className="mb-2">
                             <span className="font-semibold">Order Number:</span> {order.orderNumber}

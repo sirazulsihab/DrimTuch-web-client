@@ -103,7 +103,7 @@ export default function ServiceDetailsClient({ id }) {
             <Link
               href={`/order?serviceId=${service._id}&title=${encodeURIComponent(service.title)}&price=${service.price}`}
             >
-              <button className="px-6 py-3 rounded-xl bg-yellow-400 text-black font-bold hover:bg-black hover:text-yellow-400 transition cursor-pointer">
+              <button className="px-6 py-3 rounded-xl bg-orange-600 text-black font-bold hover:bg-black hover:text-orange-600 transition cursor-pointer">
                 Order Now
               </button>
             </Link>
