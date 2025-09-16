@@ -7,15 +7,14 @@ import logo from '../images/logo.png';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "#", dropdown: true },
+    { name: "Services", path: "#", dropdown: "services" },
     { name: "ঘরে বসে আয়", path: "/affiliate/dashboard" },
     { name: "এরিয়া পার্টনার", path: "#" },
-    { name: "About Us", path: "/about" },
-    { name: "Mission & Vision", path: "#" },
-    { name: "Contact", path: "/contact" },
+    { name: "More", path: "#", dropdown: "more" },
   ];
 
   const serviceDropdown = [
@@ -27,17 +26,20 @@ export default function Navbar() {
     { name: "Track Order", path: "/order/track" },
   ];
 
+  const moreDropdown = [
+    { name: "About Us", path: "/about" },
+    { name: "Mission & Vision", path: "#" },
+    { name: "Contact", path: "/contact" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
+  ];
+
   return (
     <nav className="bg-black text-orange-600 sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:px-8">
         {/* Logo */}
         <div className="text-2xl font-bold">
           <Link href="/">
-          <Image src={logo}
-            alt="DrimTuch Logo"
-            width={75}
-            height={75}
-          />
+            <Image src={logo} alt="DrimTuch Logo" width={75} height={75} />
           </Link>
         </div>
 
@@ -48,13 +50,35 @@ export default function Navbar() {
               <li
                 key={item.name}
                 className="relative px-4 py-2 rounded-xl cursor-pointer hover:text-black hover:bg-orange-600 transition custom-3d"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
+                onMouseEnter={() =>
+                  item.dropdown === "services"
+                    ? setServicesOpen(true)
+                    : setMoreOpen(true)
+                }
+                onMouseLeave={() =>
+                  item.dropdown === "services"
+                    ? setServicesOpen(false)
+                    : setMoreOpen(false)
+                }
               >
                 <span>{item.name}</span>
-                {servicesOpen && (
+                {item.dropdown === "services" && servicesOpen && (
                   <ul className="absolute top-full left-0 bg-black text-white shadow-lg rounded pt-1 w-56">
                     {serviceDropdown.map((sub) => (
+                      <li key={sub.name} className="custom-3d m-1 rounded">
+                        <Link
+                          href={sub.path}
+                          className="block px-4 py-2 hover:bg-orange-600 hover:text-black rounded"
+                        >
+                          {sub.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {item.dropdown === "more" && moreOpen && (
+                  <ul className="absolute top-full left-0 bg-black text-white shadow-lg rounded pt-1 w-56">
+                    {moreDropdown.map((sub) => (
                       <li key={sub.name} className="custom-3d m-1 rounded">
                         <Link
                           href={sub.path}
@@ -129,7 +153,10 @@ export default function Navbar() {
                   {item.name}
                 </span>
                 <ul className="pl-6">
-                  {serviceDropdown.map((sub) => (
+                  {(item.dropdown === "services"
+                    ? serviceDropdown
+                    : moreDropdown
+                  ).map((sub) => (
                     <li key={sub.name} className="custom-3d my-1 rounded">
                       <Link
                         href={sub.path}

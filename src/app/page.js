@@ -146,8 +146,9 @@ export default function Home() {
           Popular Services
         </h2>
 
+        
         {popularServices.length > 0 ? (
-          <div className="flex flex-col md:flex-row justify-center gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {popularServices.map((service) => (
               <ServiceCard key={service._id} service={service} />
             ))}
@@ -155,6 +156,7 @@ export default function Home() {
         ) : (
           <p className="text-center text-gray-600">লোড হচ্ছে...</p>
         )}
+
       </section>
 
       <Footer />

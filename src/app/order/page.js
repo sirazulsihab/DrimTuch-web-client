@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import Navbar from "@/components/Navbar";
 
 function OrderForm() {
   const searchParams = useSearchParams();
@@ -139,7 +140,9 @@ function OrderForm() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
+    <div>
+      <Navbar/>
+      <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
       {/* Left Section */}
       <div className="md:col-span-2 space-y-6 bg-white p-6 rounded-xl shadow-lg border border-orange-600">
         <h2 className="text-3xl font-bold text-orange-600 text-center rounded-xl p-2 bg-black mb-4">Submit Your Project</h2>
@@ -239,6 +242,7 @@ function OrderForm() {
           <span>Total:</span> <span>৳ {finalPrice}</span>
         </p>
       </div>
+    </div>
     </div>
   );
 }

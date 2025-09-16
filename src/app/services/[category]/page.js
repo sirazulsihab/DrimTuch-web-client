@@ -79,7 +79,7 @@ async function getServicesByCategory(category) {
 }
 
 export default async function ServicesByCategoryPage({ params }) {
-  const { category } = params;
+  const { category } = await params;
   const services = await getServicesByCategory(category);
 
   return (
