@@ -84,10 +84,20 @@ export default function ServiceDetailsPage() {
       <Navbar />
 
       <div className="max-w-4xl mx-auto my-16 text-black rounded-3xl shadow-2xl overflow-hidden">
-        <Image src={service.img} alt={service.title} className="w-full h-80 object-cover" />
+        {/* <Image src={service.img} alt={service.title} className="w-full h-80 object-cover" /> */}
+
+        <div className="relative w-full h-80">
+          <Image
+            src={service.img}
+            alt={service.title}
+            fill
+            className="object-cover rounded-t-3xl"
+          />
+        </div>
+
         <div className="p-8">
           <h1 className="text-4xl font-extrabold mb-4">{service.title}</h1>
-          <p className="text-lg text-gray-500 mb-6">{service.description}</p>
+          <p className="text-lg text-gray-500 mb-6 whitespace-pre-line">{service.description}</p>
           {service.price && <p className="text-2xl font-bold mb-6">Price: ৳ {service.price}</p>}
 
           {/* Affiliate referral link */}

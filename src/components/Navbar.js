@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import logo from '../images/logo.png';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,7 +32,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:px-8">
         {/* Logo */}
         <div className="text-2xl font-bold">
-          <Link href="/">DrimTuch</Link>
+          <Link href="/">
+          <Image src={logo}
+            width={75}
+            height={75}
+          />
+          </Link>
         </div>
 
         {/* Desktop Menu */}

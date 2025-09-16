@@ -28,7 +28,8 @@ export default function AffiliateSignup() {
   };
 
   // Course options
-  const courses = ["Digital Marketing", "Web Design", "Graphic Design"];
+  const courses = ["Social Media Management", "Video Editing", "Canva to Earning", "AI Automation", "Digital Marketing", "Social Media Design"];
+
 
   // Fetch admin payment numbers
   useEffect(() => {
@@ -188,7 +189,7 @@ export default function AffiliateSignup() {
             </div>
 
             {/* Package Selection */}
-            <div>
+            {/* <div>
               <label className="block mb-1 font-medium">Select Package</label>
               <select
                 name="package"
@@ -217,10 +218,81 @@ export default function AffiliateSignup() {
                   <span className="font-bold">{packages[form.package].commission}</span> commission per sale.
                 </p>
               )}
+            </div> */}
+
+            <div>
+              <label className="block mb-2 font-medium text-lg">Select Package</label>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Basic Package */}
+                <label className={`p-4 rounded-xl border-2 cursor-pointer transition 
+                    ${form.package === "basic" ? "border-yellow-500 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
+                  <input
+                    type="radio"
+                    name="package"
+                    value="basic"
+                    checked={form.package === "basic"}
+                    onChange={handleChange}
+                    className="hidden"
+                  />
+                  <h3 className="text-xl font-bold">Basic</h3>
+                  <p className="text-gray-300">1000৳</p>
+                  <p className="text-yellow-400 font-medium">
+                    Commission {packages.basic.commission}%
+                  </p>
+                </label>
+
+                {/* Standard Package */}
+                <label className={`p-4 rounded-xl border-2 cursor-pointer transition 
+                    ${form.package === "standard" ? "border-yellow-500 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
+                  <input
+                    type="radio"
+                    name="package"
+                    value="standard"
+                    checked={form.package === "standard"}
+                    onChange={handleChange}
+                    className="hidden"
+                  />
+                  <h3 className="text-xl font-bold">Standard</h3>
+                  <p className="text-gray-300">1500৳</p>
+                  <p className="text-yellow-400 font-medium">
+                    Commission {packages.standard.commission}%
+                  </p>
+                </label>
+
+                {/* Premium Package */}
+                <label className={`p-4 rounded-xl border-2 cursor-pointer transition 
+                    ${form.package === "premium" ? "border-yellow-500 bg-gray-900" : "border-gray-700 bg-gray-800"}`}>
+                  <input
+                    type="radio"
+                    name="package"
+                    value="premium"
+                    checked={form.package === "premium"}
+                    onChange={handleChange}
+                    className="hidden"
+                  />
+                  <h3 className="text-xl font-bold">Premium</h3>
+                  <p className="text-gray-300">2000৳</p>
+                  <p className="text-yellow-400 font-medium">
+                    Commission {packages.premium.commission}%
+                  </p>
+                </label>
+              </div>
+
+              {/* ✅ Selection Info */}
+              {form.package && (
+                <p className="bg-gray-800 mt-4 p-3 rounded text-sm text-gray-300">
+                  You selected{" "}
+                  <span className="font-bold capitalize">{form.package}</span> Package —
+                  Pay <span className="font-bold">{form.packageAmount}৳</span> and get{" "}
+                  <span className="font-bold">{packages[form.package].commission}%</span> commission per sale.
+                </p>
+              )}
             </div>
 
+
             {/* Course Selection */}
-            <div>
+            {/* <div>
               <label className="block mb-1 font-medium">Select Course</label>
               <select
                 name="selectedCourse"
@@ -234,7 +306,43 @@ export default function AffiliateSignup() {
                   <option key={idx} value={course}>{course}</option>
                 ))}
               </select>
+            </div> */}
+
+
+            {/* Course Selection */}
+            <div>
+              <label className="block mb-2 font-medium text-lg">
+                Select Course
+              </label>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {courses.map((course, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() =>
+                      handleChange({
+                        target: { name: "selectedCourse", value: course },
+                      })
+                    }
+                    className={`cursor-pointer p-4 rounded-xl border transition 
+                      ${
+                        form.selectedCourse === course
+                          ? "border-yellow-500 bg-gray-900 shadow-lg"
+                          : "border-gray-700 bg-gray-800 hover:border-yellow-400"
+                      }`}
+                  >
+                    <p
+                      className={`text-center font-medium ${
+                        form.selectedCourse === course ? "text-yellow-400" : "text-white"
+                      }`}
+                    >
+                      {course}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
+
 
             {/* Payment Method */}
             <div>
