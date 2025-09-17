@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 
@@ -188,38 +189,6 @@ export default function AffiliateSignup() {
               />
             </div>
 
-            {/* Package Selection */}
-            {/* <div>
-              <label className="block mb-1 font-medium">Select Package</label>
-              <select
-                name="package"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-600"
-                value={form.package}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Choose a Package</option>
-                <option value="basic">
-                  Basic - 1000৳ (Commission {packages.basic.commission})
-                </option>
-                <option value="standard">
-                  Standard - 1500৳ (Commission {packages.standard.commission})
-                </option>
-                <option value="premium">
-                  Premium - 2000৳ (Commission {packages.premium.commission})
-                </option>
-              </select>
-
-              {form.package && (
-                <p className="bg-gray-800 mt-2 p-2 rounded text-sm text-gray-300">
-                  You selected{" "}
-                  <span className="font-bold capitalize">{form.package}</span> Package — Pay{" "}
-                  <span className="font-bold">{form.packageAmount}৳</span> and get{" "}
-                  <span className="font-bold">{packages[form.package].commission}</span> commission per sale.
-                </p>
-              )}
-            </div> */}
-
             <div>
               <label className="block mb-2 font-medium text-lg">Select Package</label>
 
@@ -289,24 +258,6 @@ export default function AffiliateSignup() {
                 </p>
               )}
             </div>
-
-
-            {/* Course Selection */}
-            {/* <div>
-              <label className="block mb-1 font-medium">Select Course</label>
-              <select
-                name="selectedCourse"
-                className="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-600"
-                value={form.selectedCourse}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Choose a Course</option>
-                {courses.map((course, idx) => (
-                  <option key={idx} value={course}>{course}</option>
-                ))}
-              </select>
-            </div> */}
 
 
             {/* Course Selection */}
@@ -446,6 +397,7 @@ export default function AffiliateSignup() {
           </p>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import AdminPaymentNumbers from "./AdminPaymentNumbers";
 import AdminFaqs from "./AdminFaqs";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function AdminDashboard() {
   const [tab, setTab] = useState("orders");
@@ -75,6 +76,7 @@ export default function AdminDashboard() {
           {tab === "faqs" && <AdminFaqs />}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

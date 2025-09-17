@@ -1,6 +1,7 @@
 // src/app/contact/page.js
 "use client";
 
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
 
@@ -109,6 +110,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

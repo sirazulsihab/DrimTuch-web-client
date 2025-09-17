@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 function OrderForm() {
   const searchParams = useSearchParams();
@@ -243,6 +244,7 @@ function OrderForm() {
         </p>
       </div>
     </div>
+    <Footer/>
     </div>
   );
 }

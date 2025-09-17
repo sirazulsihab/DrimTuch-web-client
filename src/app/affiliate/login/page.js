@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/Footer";
 
 export default function AffiliateLogin() {
   const router = useRouter();
@@ -94,6 +95,7 @@ export default function AffiliateLogin() {
           </p>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

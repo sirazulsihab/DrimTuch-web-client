@@ -34,7 +34,7 @@ export default function TrackOrder() {
     const maskPhone = (phone) => {
         if (!phone) return "";
         const len = phone.length;
-        if (len <= 3) return "***";
+        if (len <= 3) return "********";
         return "*".repeat(len - 3) + phone.slice(-3);
     };
 
@@ -48,9 +48,9 @@ export default function TrackOrder() {
     return (
         <div>
             <Navbar />
-            <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
+            <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-1 gap-6">
                 {/* Left Section - Track Order Form */}
-                <div className="md:col-span-2 space-y-6 bg-white p-6 rounded-xl shadow-lg border border-orange-600">
+                <div className="md:col-span-3 space-y-6 bg-white p-6 rounded-xl shadow-lg border border-orange-600">
                     <h2 className="text-3xl font-bold text-orange-600 mb-4">Track Your Order</h2>
 
                     <div className="space-y-4">
@@ -75,35 +75,76 @@ export default function TrackOrder() {
 
                 {/* Right Section - Order Details */}
                 {order && (
-                    <div className="bg-gray-100 p-6 rounded-xl shadow-lg border border-orange-600 md:col-span-3">
-                        <h3 className="text-xl font-bold mb-4">Order Details</h3>
-                        <p className="mb-2">
-                            <span className="font-semibold">Order Number:</span> {order.orderNumber}
-                        </p>
+                <div className="bg-gray-100 p-6 rounded-xl shadow-lg border border-orange-600 md:col-span-3">
+                    <h3 className="text-xl font-bold mb-4">Order Details</h3>
+                    <table className="w-full border-separate border-spacing-y-3">
+                    <tbody>
+                        <tr>
+                        <td className="bg-black text-white font-semibold px-4 py-2 rounded-l-lg w-1/3">
+                            Order Number
+                        </td>
+                        <td className="px-4 py-2 border border-black rounded-r-lg">
+                            {order.orderNumber}
+                        </td>
+                        </tr>
                         {order.serviceId?.title && (
-                            <p className="mb-2">
-                                <span className="font-semibold">Service:</span> {order.serviceId.title}
-                            </p>
+                        <tr>
+                            <td className="bg-black text-white font-semibold px-4 py-2 rounded-l-lg w-1/3">
+                            Service
+                            </td>
+                            <td className="px-4 py-2 border border-black rounded-r-lg">
+                            {order.serviceId.title}
+                            </td>
+                        </tr>
                         )}
-                        <p className="mb-2">
-                            <span className="font-semibold">Customer Name:</span> {order.customerName}
-                        </p>
+                        <tr>
+                        <td className="bg-black text-white font-semibold px-4 py-2 rounded-l-lg w-1/3">
+                            Customer Name
+                        </td>
+                        <td className="px-4 py-2 border border-black rounded-r-lg">
+                            {order.customerName}
+                        </td>
+                        </tr>
                         {order.customerEmail && (
-                            <p className="mb-2">
-                                <span className="font-semibold">Email:</span> {maskEmail(order.customerEmail)}
-                            </p>
+                        <tr>
+                            <td className="bg-black text-white font-semibold px-4 py-2 rounded-l-lg w-1/3">
+                            Email
+                            </td>
+                            <td className="px-4 py-2 border border-black rounded-r-lg">
+                            {maskEmail(order.customerEmail)}
+                            </td>
+                        </tr>
                         )}
-                        <p className="mb-2">
-                            <span className="font-semibold">Phone:</span> {maskPhone(order.customerPhone)}
-                        </p>
-                        <p className="mb-2">
-                            <span className="font-semibold">Amount:</span> ৳ {order.finalAmount}
-                        </p>
-                        <p className="mb-2">
-                            <span className="font-semibold">Status:</span> {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
-                        </p>
-                    </div>
+                        <tr>
+                        <td className="bg-black text-white font-semibold px-4 py-2 rounded-l-lg w-1/3">
+                            Phone
+                        </td>
+                        <td className="px-4 py-2 border border-black rounded-r-lg">
+                            {maskPhone(order.customerPhone)}
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className="bg-black text-white font-semibold px-4 py-2 rounded-l-lg w-1/3">
+                            Amount
+                        </td>
+                        <td className="px-4 py-2 border border-black rounded-r-lg">
+                            ৳ {order.finalAmount}
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className="bg-black text-white font-semibold px-4 py-2 rounded-l-lg w-1/3">
+                            Status
+                        </td>
+                        <td className="px-4 py-2 border border-black rounded-r-lg">
+                            {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
                 )}
+
+
             </div>
         </div>
     );

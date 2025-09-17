@@ -28,7 +28,7 @@ export default function Navbar() {
 
   const moreDropdown = [
     { name: "About Us", path: "/about" },
-    { name: "Mission & Vision", path: "#" },
+    { name: "Mission & Vision", path: "/missionVision" },
     { name: "Contact", path: "/contact" },
     { name: "Privacy Policy", path: "/privacy-policy" },
   ];

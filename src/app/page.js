@@ -16,6 +16,21 @@ export default function Home() {
   const [isAffiliateLoggedIn, setIsAffiliateLoggedIn] = useState(false); //  login state
   const router = useRouter();
 
+  
+  // Affiliate code save on page load
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const ref = urlParams.get("ref");
+      if (ref) {
+        const now = new Date().getTime();
+        localStorage.setItem("affiliate", JSON.stringify({ code: ref, timestamp: now }));
+        console.log("Affiliate code saved from service page:", ref);
+      }
+    }
+  }, []);
+
+
   useEffect(() => {
     async function fetchCategories() {
       try {
