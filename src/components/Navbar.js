@@ -13,7 +13,7 @@ export default function Navbar() {
     { name: "Home", path: "/" },
     { name: "Services", path: "#", dropdown: "services" },
     { name: "ঘরে বসে আয়", path: "/affiliate/dashboard" },
-    { name: "এরিয়া পার্টনার", path: "#" },
+    { name: "এরিয়া পার্টনার", path: "/areaPartner" },
     { name: "More", path: "#", dropdown: "more" },
   ];
 

@@ -5,7 +5,8 @@ import Affiliates from "./Affiliates";
 import Services from "./Services";
 import Coupons from "./Coupons";
 import Payouts from "./Payouts";
-import AdminPaymentNumbers from "./AdminPaymentNumbers";
+import AdminPaymentNumbers from "./AdminPaymentNumbers"; 
+import AdminFaqs from "./AdminFaqs";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 
@@ -49,6 +50,9 @@ export default function AdminDashboard() {
           <button onClick={() => setTab("payouts")} className={sidebarBtnClass}>
             Payout Requests
           </button>
+          <button onClick={() => setTab("faqs")} className={sidebarBtnClass}>
+            FAQs
+          </button>
 
           <div className="mt-auto">
             <button
@@ -68,6 +72,7 @@ export default function AdminDashboard() {
           {tab === "paymentMethod" && <AdminPaymentNumbers />}
           {tab === "coupons" && <Coupons />}
           {tab === "payouts" && <Payouts />}
+          {tab === "faqs" && <AdminFaqs />}
         </div>
       </div>
     </div>
